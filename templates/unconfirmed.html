@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Unconfirmed
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/unconfirmed" method="post">
+        <div>
+            <input id="pin" autocomplete="off" autofocus class="form-control" name="pin" placeholder="Enter PIN" type="text" maxlength="12">
+        </div>
+        <div>
+            <button id="confirm" type="submit" name="confirm" value="confirm">Confirm</button>
+        </div>
+        <div>
+            <button id="send" type="submit" name="send" value="send">Send again?</button>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/signin">Signin</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Email
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/email" method="post">
+        <div class="EmailMain">
+            <div>
+                <input id="email" autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text">
+            </div>
+            <div>
+                <button id="updateEmail" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <script>
+
+        document.querySelector("#updateEmail").disabled = true;
+
+        document.querySelector("#email").onkeyup = function() {
+            let email = document.querySelector("#email").value;
+
+            if (email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)) {
+                document.querySelector("#updateEmail").disabled = false;
+            }
+            else {
+                document.querySelector("#updateEmail").disabled = true;
+            }
+        }
+    </script>
+{% endblock %}

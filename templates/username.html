@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Username
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/username" method="post">
+        <div class="UsernameMain">
+            <div>
+                <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username (2 - 20 char)." type="text">
+            </div>
+            <div>
+                <button id="updateUsername" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <script>
+
+        document.querySelector("#updateUsername").disabled = true;
+
+        document.querySelector("#username").onkeyup = function() {
+            let username = document.querySelector("#username").value;
+
+            if (username.length > 1 && username.length < 21 && username.match(/^[A-Za-z0-9 ]+$/)) {
+                document.querySelector("#updateUsername").disabled = false;
+
+            }
+            else {
+                document.querySelector('#updateUsername').disabled = true;
+            }
+        }
+    </script>
+{% endblock %}

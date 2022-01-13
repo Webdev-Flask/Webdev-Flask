@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/signin" method="post">
+        <div>
+            <div>
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" size="35">
+            </div>
+            <div>
+                <input name="password" placeholder="Password" type="password" size="35">
+            </div>
+            <button type="submit">Sign In</button>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/forget">forgot password?</a>
+    </div>
+    <div>
+        <a href="/signup">Signup</a>
+    </div>
+{% endblock %}

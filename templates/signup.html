@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <form action="/signup" method="post" enctype="multipart/form-data">
+        <div>
+            <div>
+                <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username (2 - 20 char)." type="text" size="35">
+            </div>
+            <div>
+                <input id="email" autocomplete="off" autofocus class="form-control" name="email" placeholder="Email." type="text" size="35">
+            </div>
+            <div>
+                <input id="password" name="password" placeholder="Password (7 to 15 char, min 1 numeric & special)." type="password" size="35">  
+            </div>
+            <div>
+                <input id="confirm-pass" name="confirm-password" placeholder="Confirm Password" type="password" size="35">
+            </div>
+            <div>         
+                <input type="file" id="picture" name="picture">
+                <div>Profile picture (32mb max - *.jpg, *.png, *.bmp).</div>
+            </div>
+            <div class="g-recaptcha" id="reCaptcha" data-sitekey="{{ pub_key }}"></div>
+            <div>
+                <input type="checkbox" id="cookies" name="cookies" value="Accept cookies">
+                <label for="cookies">Accept website cookies</label><br>
+            </div>
+            <button id="submit" type="submit">Signup</button>
+        </div>
+    </form>
+    <br>
+    <div>   
+        <a href="/signin">Signin</a>
+    </div>
+{% endblock %}

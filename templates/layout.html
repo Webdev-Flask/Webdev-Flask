@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Benoit Hage - hage.benoit@gmail.com/">
+        <meta name="description" content="Description"/>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'/>
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+
+        <title>Title: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <div>
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div id="Flash" class="Flash-{{ category }}">
+                            <div class="Flash-{{ category }} Flash-column-Left">
+                                {{ message }}
+                            </div>
+                            <div>
+                                <span class="Flash-Close Flash-{{ category }} Flash-column-Right" onclick="document.getElementById('Flash').style.display='none';">&times;</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>

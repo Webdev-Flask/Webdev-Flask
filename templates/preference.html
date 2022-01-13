@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Mailing
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/mailing" method="post">
+        <div class="MailingMain">
+            <div>
+                <input type="checkbox" id="activate" name="activate" value="activate">
+                <label for="activate"> Activate Newsletter.</label><br>
+            </div>
+            <div>
+                <input type="checkbox" id="deactivate" name="deactivate" value="deactivate">
+                <label for="deactivate"> Deactivate Newsletter.</label><br>
+            </div>
+            <div>
+                <button id="updateNewsletter" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <script>
+
+        let activate = document.getElementById("activate");
+        let deactivate = document.getElementById("deactivate");
+
+        document.querySelector("#updateNewsletter").disabled = true;
+
+        document.querySelector("#activate").onclick = function() {
+
+            if (activate.checked === true) {
+                deactivate.checked = false
+                document.querySelector("#updateNewsletter").disabled = false
+            }
+            else if (deactivate.checked === true) {
+                activate.checked = false
+                document.querySelector("#updateNewsletter").disabled = false
+            }
+            else {
+                document.querySelector("#updateNewsletter").disabled = true
+            }
+        }
+
+        document.querySelector("#deactivate").onclick = function() {
+
+            if (deactivate.checked === true) {
+                activate.checked = false
+                document.querySelector("#updateNewsletter").disabled = false
+            }
+            else if (activate.checked === true) {
+                deactivate.checked = false
+                document.querySelector("#updateNewsletter").disabled = false
+            }
+            else {
+                document.querySelector("#updateNewsletter").disabled = true
+            }
+        }
+
+
+    </script>
+{% endblock %}

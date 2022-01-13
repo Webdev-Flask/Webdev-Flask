@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Picture
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/picture" method="post" enctype="multipart/form-data">
+        <div class="PictureMain">
+            <div>
+                <div>Profile picture (32mb max - *.jpg, *.png, *.bmp).</div>
+                <input type="file" id="picture" name="picture">
+            </div>
+            <div>
+                <button id="uploadPicture" type="submit">Upload</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+{% endblock %}

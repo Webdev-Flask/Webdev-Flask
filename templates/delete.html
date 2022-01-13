@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/delete" method="post">
+        <div class="DeleteMain">
+            <div>
+                <div>Delete your account?</div>
+            </div>
+            <div>
+                <button id="deleteAccount" name="deleteAccount" type="submit">Delete</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+{% endblock %}

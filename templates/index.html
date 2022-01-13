@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <div>Index page</div>
+
+    <div>Hello {{ name }}</div>
+
+    <img src="{{ picture }}" alt="Profile picture of {{ name }}" height="50">
+
+    <div>
+        <a href="/username">Username</a>
+        <a href="/password">Password</a>
+        <a href="/email">Email</a>
+        <a href="/preference">Preference</a>
+        <a href="/picture">Picture</a>
+        <a href="/delete">Delete</a>
+    </div>
+    <br>
+    <a href="/logout">Logout</a>
+{% endblock %}

@@ -1,0 +1,57 @@
+/* Flash */
+
+#Flash {
+	width: 25%;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: flex-start;
+	align-content: center;
+
+	border: 1px solid black;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.Flash-column-Left {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+}
+
+.Flash-column-Right {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: flex-start;
+	align-content: center;
+}
+
+.Flash-success {
+	background-color: green;
+}
+
+.Flash-warning {
+	background-color: yellow;
+}
+
+.Flash-danger {
+	background-color: red;
+}
+
+.Flash-Close {
+	color: black;
+	cursor: pointer;
+	transition: 0.2s;
+	padding-left: 10px;
+}
+
+.Flash-Close:hover {
+	color: grey;
+}
