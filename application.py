@@ -87,7 +87,7 @@ app.config["MAIL_USE_TLS"] = False
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = os.environ["APP_MAIL_USERNAME"]
 app.config["MAIL_PASSWORD"] = os.environ["APP_MAIL_PASSWORD"]
-app.config["MAIL_DEFAULT_SENDER"] = "audibene.sales@gmail.com"
+app.config["MAIL_DEFAULT_SENDER"] = "XXX"
 
 
 # Configure mail 
