@@ -128,6 +128,21 @@ def confirmed_required(f):
     return decorated_function
 
 
+# Decorator to ensure user is authorized
+def role_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+
+        if getUserRole() == "user":
+
+            flash("You are not authorized to access this page", "error")
+            return redirect("/")
+
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
 # Generate random password
 def randomPassword():
     
