@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div>
+        <form action="/logged" method="post">
+            <div>
+                Statistics:
+                <ul>
+                    <li>Total Admin(s): {{ admins | length }}</li>
+                    <li>Total User(s): {{ users | length }}</li>
+                    <li>Total Unconfirmed(s): {{ unconfirmeds | length }}</li>
+                </ul>
+            </div>
+            <br>
+            <div>
+                User list:
+                <ul>
+                    {% for user in users %}
+                        <li>{{ user[0] }} - {{ user[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <br>
+            <div>
+                Admin list:
+                <ul>
+                    {% for admin in admins %}
+                        <li>{{ admin }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <br>
+            <div>
+                <input id="remove" autocomplete="off" autofocus class="form-control" name="remove" placeholder=" Remove user" type="text">
+                <button type="submit" name="remove" value="remove">Remove</button>
+            </div>
+            <br>
+            <div>
+                <input id="promote" autocomplete="off" autofocus class="form-control" name="promote" placeholder=" Promote user" type="text">
+                <button type="submit" name="promote" value="promote">Promote</button>
+            </div>
+            <br>
+            <div>
+                <input id="demote" autocomplete="off" autofocus class="form-control" name="demote" placeholder=" Demote admin" type="text">
+                <button type="submit" name="demote" value="demote">Demote</button>
+            </div>
+            <br>
+        </form>
+    </div>
+    <br>
+    <div>
+        <a href="/"></a>
+    </div>
+{% endblock %}

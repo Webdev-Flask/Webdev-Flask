@@ -339,6 +339,7 @@ from routes.email import email
 from routes.preference import preference
 from routes.picture import picture
 from routes.delete import delete
+from routes.administration import administration
 
 
 # Configure Blueprints
@@ -354,3 +355,4 @@ app.register_blueprint(email)
 app.register_blueprint(preference)
 app.register_blueprint(picture)
 app.register_blueprint(delete)
+app.register_blueprint(administration)
