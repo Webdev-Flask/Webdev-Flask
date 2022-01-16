@@ -74,7 +74,7 @@ if query is None:
     db.session.add(Users(username=os.environ.get("USERNAME"), email=os.environ.get("EMAIL"), hash=generate_password_hash(os.environ.get("PASSWORD")), role=os.environ.get("ROLE"), confirmed=os.environ.get("CONFIRMED")))
     db.session.commit()
 
-'''
+
 # Email configuration
 app.config["DEBUG"] = False
 app.config["BCRYPT_LOG_ROUNDS"] = 13
@@ -87,8 +87,7 @@ app.config["MAIL_USE_TLS"] = False
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = os.environ["APP_MAIL_USERNAME"]
 app.config["MAIL_PASSWORD"] = os.environ["APP_MAIL_PASSWORD"]
-app.config["MAIL_DEFAULT_SENDER"] = "XXX"
-'''
+app.config["MAIL_DEFAULT_SENDER"] = os.environ["APP_MAIL_USERNAME"]
 
 
 # Configure mail 
