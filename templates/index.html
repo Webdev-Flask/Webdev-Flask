@@ -12,7 +12,9 @@
     <img src="{{ picture }}" alt="Profile picture of {{ name }}" height="50">
 
     <div>
-        <a href="/administration">Administration</a>
+        {% if role == "admin" %}
+            <a href="/administration">Administration</a>
+        {% endif %}
         <a href="/username">Username</a>
         <a href="/password">Password</a>
         <a href="/email">Email</a>
