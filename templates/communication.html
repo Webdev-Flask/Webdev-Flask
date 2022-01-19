@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Communication
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/communication" method="post" enctype="multipart/form-data">
+        <div>
+            <div>
+                <input id="address" autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text">
+            </div>
+            <br>
+            <div>
+                <input type="checkbox" id="newsletter" name="newsletter" value="newsletter">
+                <label for="newsletter"> Send to all users?</label>
+            </div>
+            <br>
+            <div>
+                <input id="subject" autocomplete="off" autofocus class="form-control" name="subject" placeholder=" Subject" type="text">
+            </div>
+            <br>
+            <div>
+                {{ ckeditor.create() }}
+                {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+            </div>
+            <br>
+            <div>
+                <button id="submit" type="submit" name="submit" value="submit">Send</button>
+            </div>
+        </div>
+        <br>
+        <div>
+            <a href="/">index</a>
+        </div>
+    </form>
+{% endblock %}

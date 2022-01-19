@@ -31,32 +31,32 @@ def administrationFunction():
             # Check if field is not empty
             if remove == "":
                 flash("Must provide name REMOVE", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is root
             if remove == os.environ.get("USERNAME"):
                 flash("Can't remove this user", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if the name matches
             if Users.query.filter_by(username=remove).first() == None:
                 flash("No matching name", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is the user itself
             if Users.query.filter_by(username=remove).first() == getUserName():
                 flash("Can't remove yourself", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is the user is an admin
             query = Users.query.filter_by(username=remove).first()
             if query.role == "admin":
                 flash("Can't remove admin", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Update database by removing user
@@ -64,7 +64,7 @@ def administrationFunction():
                 Users.query.filter(Users.username == remove).delete()
                 db.session.commit()
                 flash("User deleted", "success")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
 
@@ -73,20 +73,20 @@ def administrationFunction():
             # Check if field is not empty
             if promote == "":
                 flash("Must provide name", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if the name matches
             if Users.query.filter_by(username=promote).first() == None:
                 flash("No matching name", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is the user is an admin
             query = Users.query.filter_by(username=promote).first()
             if query.role == "admin":
                 flash("Already admin", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Update database by promoting user
@@ -95,7 +95,7 @@ def administrationFunction():
                 query.role = "admin"
                 db.session.commit()
                 flash("User promoted", "success")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
 
@@ -104,25 +104,25 @@ def administrationFunction():
             # Check if field is not empty
             if demote == "":
                 flash("Must provide name", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is root
             if demote == os.environ.get("USERNAME"):
                 flash("Can't demote this user", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if the name matches
             if Users.query.filter_by(username=demote).first() == None:
                 flash("No matching name", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Check if it is the user itself
             if Users.query.filter_by(username=demote).first() == getUserName():
                 flash("Can't demote yourself", "warning")
-                return redirect("/logged")
+                return redirect("/administration")
 
 
             # Update database by demoting user
@@ -131,7 +131,7 @@ def administrationFunction():
                 query.role = "user"
                 db.session.commit()
                 flash("Admin demoted", "success")
-                return redirect("/logged")
+                return redirect("/administration")
 
                 
     

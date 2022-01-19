@@ -133,7 +133,7 @@ def role_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
 
-        if getUserRole() == "user":
+        if getUserRole() != "admin":
 
             flash("You are not authorized to access this page", "error")
             return redirect("/")
@@ -148,7 +148,7 @@ def randomPassword():
     
     result = ""
     while len(result) <= 12:
-        character = random.choice(string.printable)
+        character = random.choice(string.ascii_letters)
         result += character
     
     return result
@@ -355,6 +355,7 @@ from routes.preference import preference
 from routes.picture import picture
 from routes.delete import delete
 from routes.administration import administration
+from routes.communication import communication
 
 
 # Configure Blueprints
@@ -371,3 +372,4 @@ app.register_blueprint(preference)
 app.register_blueprint(picture)
 app.register_blueprint(delete)
 app.register_blueprint(administration)
+app.register_blueprint(communication)
