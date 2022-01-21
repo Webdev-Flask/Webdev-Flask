@@ -12,6 +12,7 @@ from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
+from flask_ckeditor import CKEditor
 
 
 # Configure application
@@ -66,6 +67,9 @@ class Users(db.Model):
 
 # Create DB
 db.create_all()
+
+# Set CKEditor
+ckeditor = CKEditor(app)
 
 
 # Seed DB for admin
