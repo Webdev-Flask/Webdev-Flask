@@ -68,6 +68,7 @@ class Users(db.Model):
 # Create DB
 db.create_all()
 
+
 # Set CKEditor
 ckeditor = CKEditor(app)
 
