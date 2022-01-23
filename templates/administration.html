@@ -16,39 +16,32 @@
                 Statistics:
                 <ul>
                     <li>Admin: {{ admin | length }}</li>
+                        <ul>
+                            {% for element in admin %}
+                                <li>{{ element }}</li>
+                            {% endfor %}
+                        </ul>
                     <li>User: {{ user | length }}</li>
+                        <ul>
+                            {% for element in user %}
+                                <li>{{ element[0] }} - {{ element[1] }}</li>
+                            {% endfor %}
+                        </ul>
                     <li>Unconfirmed: {{ unconfirmed | length }}</li>
+                        <ul>
+                            {% for element in unconfirmed %}
+                                <li>{{ element }}</li>
+                            {% endfor %}
+                        </ul>
                     <li>Logged: {{ logged | length }}</li>
+                        <ul>
+                            {% for element in logged %}
+                                <li>{{ element }}</li>
+                            {% endfor %}
+                        </ul>
                 </ul>
             </div>
             <hr>
-            <div>
-                Logged:
-                <ul>
-                    {% for element in logged %}
-                        <li>{{ element }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <br>
-            <div>
-                User:
-                <ul>
-                    {% for element in user %}
-                        <li>{{ element[0] }} - {{ element[1] }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <br>
-            <div>
-                Admin:
-                <ul>
-                    {% for element in admin %}
-                        <li>{{ element }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <br>
             <div>
                 <input id="remove" autocomplete="off" autofocus class="form-control" name="remove" placeholder=" Remove user" type="text">
                 <button type="submit" name="remove" value="remove">Remove</button>
