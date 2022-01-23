@@ -77,7 +77,7 @@ ckeditor = CKEditor(app)
 # Seed DB for admin
 query = Users.query.filter_by(username=os.environ.get("USERNAME")).first()
 if query is None:
-    db.session.add(Users(username=os.environ.get("USERNAME"), email=os.environ.get("EMAIL"), hash=generate_password_hash(os.environ.get("PASSWORD")), role=os.environ.get("ROLE"), confirmed="True", logged="True")
+    db.session.add(Users(username=os.environ.get("USERNAME"), email=os.environ.get("EMAIL"), hash=generate_password_hash(os.environ.get("PASSWORD")), role=os.environ.get("ROLE"), confirmed="True", logged="True"))
     db.session.commit()
 
 
