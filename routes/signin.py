@@ -60,7 +60,7 @@ def signinFunction():
 
         # Check if user is already logged
         query = Users.query.filter_by(username=username).first()
-        print(session["user_id"])
+        print(session.get("user_id"))
         if query.id == session["user_id"]:
             flash("Already logged in", "danger")
             return redirect("/signin")
