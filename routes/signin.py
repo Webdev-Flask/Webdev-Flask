@@ -57,7 +57,7 @@ def signinFunction():
             flash("Invalid password", "danger")
             return redirect("/signin")
 
-
+        '''
         # Check if user is already logged
         query = Users.query.filter_by(username=username).first()
         print(session.get("user_id"))
@@ -66,9 +66,10 @@ def signinFunction():
             return redirect("/signin")
 
         else:
-
-            # Remember which user has logged in
-            session["user_id"] = query.id
+        '''
+        print(session.get("user_id"))
+        # Remember which user has logged in
+        session["user_id"] = query.id
 
 
         return redirect("/")
