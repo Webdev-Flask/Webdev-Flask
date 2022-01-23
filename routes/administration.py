@@ -138,9 +138,10 @@ def administrationFunction():
     else:
 
         # Set variable
-        users = []
-        admins = []
-        unconfirmeds = []
+        user = []
+        admin = []
+        unconfirmed = []
+        logged = []
         index = 0
         
 
@@ -153,20 +154,25 @@ def administrationFunction():
 
             # Users list
             if query[index].role == "user":
-                users.extend([[query[index].username, query[index].email]])
+                user.extend([[query[index].username, query[index].email]])
 
 
             # Admins list
             if query[index].role == "admin":
-                admins.extend([query[index].username])
+                admin.extend([query[index].username])
 
 
             # Unconfirmeds list
             if query[index].confirmed == "False":
-                unconfirmeds.extend([query[index].username])
+                unconfirmed.extend([query[index].username])
+
+
+            # Unconfirmeds list
+            if query[index].status == "True":
+                logged.extend([query[index].username])
                 
 
             index += 1
 
 
-        return render_template("administration.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), users=users, admins=admins, unconfirmeds=unconfirmeds)
+        return render_template("administration.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), user=user, admin=admin, unconfirmed=unconfirmed, logged=logged)
