@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, session, flash, get_flashed_messages
-
+from application import getUserName, db, Users
 
 # Set Blueprints
 logout = Blueprint('logout', __name__,)
@@ -12,8 +12,17 @@ def logoutFunction():
     get_flashed_messages()
 
 
-    # Clear session
-    session.clear()
+    # Get username
+    username = getUserName()
+
+
+    # Get username id
+    query = Users.query.filter_by(username=username).first()
+    user_id = query.id
+
+
+    # Clear session of user
+    session.pop('user_id', None)
 
 
     # Flash result & redirect

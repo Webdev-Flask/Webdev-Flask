@@ -19,10 +19,6 @@ def signinFunction():
     get_flashed_messages()
 
 
-    # Forget any user_id
-    session.clear()
-
-
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
@@ -62,9 +58,17 @@ def signinFunction():
             return redirect("/signin")
 
 
-        # Remember which user has logged in
+        # Check if user is already logged
         query = Users.query.filter_by(username=username).first()
-        session["user_id"] = query.id
+        print(session["user_id"])
+        if query.id == session["user_id"]:
+            flash("Already logged in", "danger")
+            return redirect("/signin")
+
+        else:
+
+            # Remember which user has logged in
+            session["user_id"] = query.id
 
 
         return redirect("/")
