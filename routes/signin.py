@@ -67,7 +67,8 @@ def signinFunction():
 
         else:
         '''
-        print(session.get("user_id"))
+        user_id = session.get("user_id")
+        print(user_id)
         # Remember which user has logged in
         session["user_id"] = query.id
 
