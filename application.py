@@ -63,6 +63,7 @@ class Users(db.Model):
     time = db.Column(db.Integer, nullable=False, default=0)
     pin = db.Column(db.Integer, nullable=False, default=0)
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
+    status = db.Column(db.String(1024), nullable=False, default="False")
 
 
 # Create DB

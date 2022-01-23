@@ -40,10 +40,14 @@ def unconfirmedFunction():
                 query.confirmed = "True"
                 db.session.commit()
 
+                # Change user logged status in DB and commit
+                query.status = "True"
+                db.session.commit()
 
                 # Flash result & redirect
                 flash("You are now confirmed", "success")
                 return redirect("/")
+                
                 
             else:
 
@@ -57,7 +61,6 @@ def unconfirmedFunction():
             
             # Send new PIN
             sendPin(email)
-            
 
             # Flash result & redirect
             flash("An new activation PIN has been sent to your email", "success")

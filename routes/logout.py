@@ -8,7 +8,7 @@ logout = Blueprint('logout', __name__,)
 @logout.route("/logout")
 def logoutFunction():
 
-    # Force flash() to get the messages on the same page as the redirect.
+    # Force flash() to get the messages on the same page as the redirect
     get_flashed_messages()
 
 
@@ -19,6 +19,11 @@ def logoutFunction():
     # Get username id
     query = Users.query.filter_by(username=username).first()
     user_id = query.id
+
+
+    # Change user logged status in DB and commit
+    query.status = "False"
+    db.session.commit()
 
 
     # Clear session of user

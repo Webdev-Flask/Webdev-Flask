@@ -100,6 +100,11 @@ def signupFunction():
         session["user_id"] = query.id
 
 
+        # Change user logged status in DB and commit
+        query.status = "True"
+        db.session.commit()
+
+
         # Save, upload and delete picture file
         file = request.files["picture"]
         if file and allowed_file(file.filename):
