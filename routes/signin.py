@@ -58,6 +58,11 @@ def signinFunction():
             return redirect("/signin")
 
 
+        # Change user logged status in DB and commit
+        query.status = "True"
+        db.session.commit()
+
+
         # Remember which user has logged in
         session["user_id"] = query.id
 
