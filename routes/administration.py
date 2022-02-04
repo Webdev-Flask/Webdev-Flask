@@ -161,17 +161,17 @@ def administrationFunction():
 
             # Admins list
             if query[index].role == "admin":
-                admin.extend([query[index].username])
+                admin.extend([[query[index].username, query[index].email, query[index].timeout - now]])
 
 
-            # Unconfirmeds list
+            # Unconfirmed users list
             if query[index].confirmed == "False":
-                unconfirmed.extend([query[index].username])
+                unconfirmed.extend([[query[index].username, query[index].email, query[index].timeout - now]])
 
 
-            # Unconfirmeds list
+            # Logged user list
             if query[index].status == "True":
-                logged.extend([query[index].username])
+                logged.extend([[query[index].username, query[index].email, query[index].timeout - now]])
                 
 
             index += 1

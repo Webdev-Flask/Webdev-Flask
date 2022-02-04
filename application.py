@@ -51,7 +51,7 @@ class Users(db.Model):
     picture = db.Column(db.String(1024), nullable=False, default="/static/profile.svg")
     role = db.Column(db.String(1024), nullable=False, default="user")
     confirmed = db.Column(db.String(1024), nullable=False, default="False")
-    time = db.Column(db.Integer, nullable=False, default=0)
+    date = db.Column(db.Integer, nullable=False, default=0)
     pin = db.Column(db.Integer, nullable=False, default=0)
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")

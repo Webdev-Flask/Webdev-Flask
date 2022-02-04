@@ -18,7 +18,7 @@
                     <li>Admin: {{ admin | length }}</li>
                         <ul>
                             {% for element in admin %}
-                                <li>{{ element }}</li>
+                                <li>{{ element[0] }} - {{ element[1] }} | {{ element[2] }}</li>
                             {% endfor %}
                         </ul>
                     <li>User: {{ user | length }}</li>
@@ -30,13 +30,13 @@
                     <li>Unconfirmed: {{ unconfirmed | length }}</li>
                         <ul>
                             {% for element in unconfirmed %}
-                                <li>{{ element }}</li>
+                                <li>{{ element[0] }} - {{ element[1] }} | {{ element[2] }}</li>
                             {% endfor %}
                         </ul>
                     <li>Logged: {{ logged | length }}</li>
                         <ul>
                             {% for element in logged %}
-                                <li>{{ element }}</li>
+                                <li>{{ element[0] }} - {{ element[1] }} | {{ element[2] }}</li>
                             {% endfor %}
                         </ul>
                 </ul>
