@@ -93,7 +93,7 @@ def signupFunction():
             
 
         # Insert username, email and hash of the password into the table
-        db.session.add(Users(username=username, hash=generate_password_hash(password), email=email), date=date, timeout=timeout)
+        db.session.add(Users(username=username, hash=generate_password_hash(password), email=email, date=date, timeout=timeout))
         db.session.commit()
 
 
