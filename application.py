@@ -104,16 +104,22 @@ def after_request_response(response):
 # Reset counter on active users
 @app.after_request
 def after_request_timeout(response):
+    now = time()
+
     try: 
         user_id = session["user_id"]
 
     except KeyError:
         flash("First user logged", "warning")
 
-    now = time()
-    query = Users.query.filter_by(id=user_id).first()
-    query.timeout = now
-    db.session.commit()
+    try: 
+        query = Users.query.filter_by(id=user_id).first()
+        query.timeout = now
+        db.session.commit()
+        
+    except UnboundLocalError:
+        flash("First user logged", "warning")
+
     return response
 
 
