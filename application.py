@@ -94,10 +94,20 @@ mail = Mail(app)
 
 # Ensure responses aren't cached
 @app.after_request
-def after_request(response):
+def after_request_response(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
+    return response
+
+
+# Reset counter on active users
+@app.after_request
+def after_request_timeout(response):
+    user_id = session["user_id"]
+    query = Users.query.filter_by(id=user_id).first()
+    query.timeout = now
+    db.session.commit()
     return response
 
 
