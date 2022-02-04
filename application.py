@@ -50,12 +50,12 @@ def before_request():
         user_id = query[index].id
 
         if delta > 1800 and query[index].status == "True":
-                session.pop('user_id', None)
-                query[index].status = "False"
-                db.session.commit()
-                flash("Session expired after 30 min.", "warning")
+            session.pop('user_id', None)
+            query[index].status = "False"
+            db.session.commit()
+            flash("Session expired after 30 min.", "warning")
 
-        else: 
+        elif query[index].status == "True": 
             user_id = session["user_id"]
             query = Users.query.filter_by(id=user_id).first()
             query.timeout = now
