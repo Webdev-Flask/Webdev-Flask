@@ -156,22 +156,22 @@ def administrationFunction():
 
             # Users list
             if query[index].role == "user":
-                user.extend([[query[index].username, query[index].email, query[index].timeout - now]])
+                user.extend([[query[index].username, query[index].email, now - query[index].timeout]])
 
 
             # Admins list
             if query[index].role == "admin":
-                admin.extend([[query[index].username, query[index].email, query[index].timeout - now]])
+                admin.extend([[query[index].username, query[index].email, now - query[index].timeout]])
 
 
             # Unconfirmed users list
             if query[index].confirmed == "False":
-                unconfirmed.extend([[query[index].username, query[index].email, query[index].timeout - now]])
+                unconfirmed.extend([[query[index].username, query[index].email, now - query[index].timeout]])
 
 
             # Logged user list
             if query[index].status == "True":
-                logged.extend([[query[index].username, query[index].email, query[index].timeout - now]])
+                logged.extend([[query[index].username, query[index].email, now - query[index].timeout]])
                 
 
             index += 1
