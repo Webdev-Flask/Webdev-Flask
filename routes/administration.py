@@ -2,6 +2,7 @@ import os
 
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
 from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, role_required, db, Users
+from time import time
 
 
 # Set Blueprints
@@ -143,6 +144,7 @@ def administrationFunction():
         unconfirmed = []
         logged = []
         index = 0
+        time = time()
         
 
         # Query DB for all users
@@ -154,7 +156,7 @@ def administrationFunction():
 
             # Users list
             if query[index].role == "user":
-                user.extend([[query[index].username, query[index].email]])
+                user.extend([[query[index].username, query[index].email, query[index].timeout - time]])
 
 
             # Admins list

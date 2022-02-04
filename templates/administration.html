@@ -24,7 +24,7 @@
                     <li>User: {{ user | length }}</li>
                         <ul>
                             {% for element in user %}
-                                <li>{{ element[0] }} - {{ element[1] }}</li>
+                                <li>{{ element[0] }} - {{ element[1] }} | {{ element[2] }}</li>
                             {% endfor %}
                         </ul>
                     <li>Unconfirmed: {{ unconfirmed | length }}</li>

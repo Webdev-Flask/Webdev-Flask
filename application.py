@@ -144,7 +144,7 @@ def before_request_inactive():
             delta = now - before
             user_id = query[index].id
 
-            if delta > 1800 and query[index].status == "True":
+            if delta > 300 and query[index].status == "True":
                 session.pop('user_id', None)
                 query[index].status = "False"
                 db.session.commit()
