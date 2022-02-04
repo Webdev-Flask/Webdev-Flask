@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import text
 from application import db, Users
+from time import time
 
 
 # Set Blueprints
@@ -24,6 +25,7 @@ def signinFunction():
 
         username = request.form.get("username")
         password = request.form.get("password")
+        timeout = time()
 
 
         # Ensure username was submitted
@@ -60,6 +62,7 @@ def signinFunction():
 
         # Change user logged status in DB and commit
         query.status = "True"
+        query.timeout = timeout
         db.session.commit()
 
 

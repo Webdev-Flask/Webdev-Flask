@@ -36,6 +36,34 @@ def after_request(response):
     return response
 
 
+# 
+@app.before_request
+def before_request():
+    index = 0
+    query = Users.query.all()
+
+    while index < len(query):
+
+        now = time()
+        before = query[index].timeout
+        delta = now - before
+        user_id = query[index].id
+
+        if delta > 1800 and query[index].status = "True":
+                session.pop('user_id', None)
+                query[index].status = "False"
+                db.session.commit()
+                flash("Session expired after 30 min.", "warning")
+
+        else: 
+            user_id = session["user_id"]
+            query = Users.query.filter_by(id=user_id).first()
+            query.timeout = now
+            db.session.commit()
+
+        index += 1
+
+
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -64,6 +92,7 @@ class Users(db.Model):
     pin = db.Column(db.Integer, nullable=False, default=0)
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
+    timeout = db.Column(db.Integer, nullable=False, default=0)
 
 
 # Create DB

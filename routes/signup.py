@@ -32,6 +32,8 @@ def signupFunction():
         password = request.form.get("password")
         confirmPassword  = request.form.get("confirm-password")
         captcha_response = request.form['g-recaptcha-response']
+        time = time()
+        timeout = time()
 
 
         # Ensure username was submitted
@@ -91,7 +93,7 @@ def signupFunction():
             
 
         # Insert username, email and hash of the password into the table
-        db.session.add(Users(username=username, hash=generate_password_hash(password), email=email))
+        db.session.add(Users(username=username, hash=generate_password_hash(password), email=email), time=time, timeout=timeout)
         db.session.commit()
 
 
