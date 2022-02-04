@@ -104,7 +104,13 @@ def after_request_response(response):
 # Reset counter on active users
 @app.after_request
 def after_request_timeout(response):
-    user_id = session["user_id"]
+    try: 
+        user_id = session["user_id"]
+
+    except: KeyError:
+        flash("First user logged", "warning")
+
+    now = time()
     query = Users.query.filter_by(id=user_id).first()
     query.timeout = now
     db.session.commit()
@@ -113,7 +119,7 @@ def after_request_timeout(response):
 
 # Log off inactive users
 @app.before_request
-def before_request():
+def before_request_inactive():
     index = 0
     query = Users.query.all()
 
