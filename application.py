@@ -110,7 +110,7 @@ def after_request_timeout(response):
         user_id = session["user_id"]
 
     except KeyError:
-        flash("First user logged", "warning")
+        pass
 
     try: 
         query = Users.query.filter_by(id=user_id).first()
@@ -118,7 +118,7 @@ def after_request_timeout(response):
         db.session.commit()
         
     except UnboundLocalError:
-        flash("First user logged", "warning")
+        pass
 
     return response
 
@@ -129,27 +129,35 @@ def before_request_inactive():
     index = 0
     query = Users.query.all()
 
-    while index < len(query):
+    try:
+        len(query)
 
-        now = time()
-        before = query[index].timeout
-        delta = now - before
-        user_id = query[index].id
+    except TypeError:
+        pass
 
-        if delta > 1800 and query[index].status == "True":
-            session.pop('user_id', None)
-            query[index].status = "False"
-            db.session.commit()
-            flash("Session expired after 30 min.", "warning")
+    else:
 
-        elif query[index].status == "True": 
-            if session["user_id"]:
-                user_id = session["user_id"]
-                query = Users.query.filter_by(id=user_id).first()
-                query.timeout = now
+        while index < len(query):
+
+            now = time()
+            before = query[index].timeout
+            delta = now - before
+            user_id = query[index].id
+
+            if delta > 1800 and query[index].status == "True":
+                session.pop('user_id', None)
+                query[index].status = "False"
                 db.session.commit()
+                flash("Session expired after 30 min.", "warning")
 
-        index += 1
+            elif query[index].status == "True": 
+                if session["user_id"]:
+                    user_id = session["user_id"]
+                    query = Users.query.filter_by(id=user_id).first()
+                    query.timeout = now
+                    db.session.commit()
+
+            index += 1
 
 
 # Decorator to ensure user must be logged in
