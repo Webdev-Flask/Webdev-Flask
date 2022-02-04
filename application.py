@@ -121,10 +121,11 @@ def before_request():
             flash("Session expired after 30 min.", "warning")
 
         elif query[index].status == "True": 
-            user_id = session["user_id"]
-            query = Users.query.filter_by(id=user_id).first()
-            query.timeout = now
-            db.session.commit()
+            if session["user_id"]:
+                user_id = session["user_id"]
+                query = Users.query.filter_by(id=user_id).first()
+                query.timeout = now
+                db.session.commit()
 
         index += 1
 
