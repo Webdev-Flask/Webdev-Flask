@@ -27,43 +27,6 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") 
 
 
-# Ensure responses aren't cached
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
-
-
-# 
-@app.before_request
-def before_request():
-    index = 0
-    query = Users.query.all()
-
-    while index < len(query):
-
-        now = time()
-        before = query[index].timeout
-        delta = now - before
-        user_id = query[index].id
-
-        if delta > 1800 and query[index].status == "True":
-            session.pop('user_id', None)
-            query[index].status = "False"
-            db.session.commit()
-            flash("Session expired after 30 min.", "warning")
-
-        elif query[index].status == "True": 
-            user_id = session["user_id"]
-            query = Users.query.filter_by(id=user_id).first()
-            query.timeout = now
-            db.session.commit()
-
-        index += 1
-
-
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -127,6 +90,43 @@ app.config["MAIL_DEFAULT_SENDER"] = os.environ["APP_MAIL_USERNAME"]
 
 # Configure mail 
 mail = Mail(app)
+
+
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+
+# Log off inactive users
+@app.before_request
+def before_request():
+    index = 0
+    query = Users.query.all()
+
+    while index < len(query):
+
+        now = time()
+        before = query[index].timeout
+        delta = now - before
+        user_id = query[index].id
+
+        if delta > 1800 and query[index].status == "True":
+            session.pop('user_id', None)
+            query[index].status = "False"
+            db.session.commit()
+            flash("Session expired after 30 min.", "warning")
+
+        elif query[index].status == "True": 
+            user_id = session["user_id"]
+            query = Users.query.filter_by(id=user_id).first()
+            query.timeout = now
+            db.session.commit()
+
+        index += 1
 
 
 # Decorator to ensure user must be logged in
