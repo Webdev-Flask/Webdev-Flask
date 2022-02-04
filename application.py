@@ -107,7 +107,7 @@ def after_request_timeout(response):
     try: 
         user_id = session["user_id"]
 
-    except: KeyError:
+    except KeyError:
         flash("First user logged", "warning")
 
     now = time()
