@@ -144,7 +144,7 @@ def administrationFunction():
         unconfirmed = []
         logged = []
         index = 0
-        time = time()
+        now = time()
         
 
         # Query DB for all users
@@ -156,7 +156,7 @@ def administrationFunction():
 
             # Users list
             if query[index].role == "user":
-                user.extend([[query[index].username, query[index].email, query[index].timeout - time]])
+                user.extend([[query[index].username, query[index].email, query[index].timeout - now]])
 
 
             # Admins list
