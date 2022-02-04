@@ -282,7 +282,7 @@ def getUserTime():
     # Query database for time
     query = Users.query.filter_by(id=loggedId).first()
         
-    return query.time
+    return query.date
 
 
 # Get profile picture to be displayed 
