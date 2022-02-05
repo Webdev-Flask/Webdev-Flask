@@ -142,10 +142,9 @@ def before_request_inactive():
             delta = now - before
             user_id = query[index].id
 
-            if delta > 180 and query[index].status == "True":
+            if delta > 1800 and query[index].status == "True":
                 query[index].status = "False"
                 db.session.commit()
-                flash("Session expired after 30 min.", "warning")
 
             index += 1
 
@@ -161,6 +160,7 @@ def login_required(f):
         else:
             user_id = session["user_id"]
             query = Users.query.filter_by(id=user_id).first()
+            
             if query.status == "False":
                 return redirect("/signin")
 
