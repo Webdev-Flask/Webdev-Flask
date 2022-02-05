@@ -107,7 +107,7 @@ def after_request_timeout(response):
     now = time()
 
     try: 
-        user_id = session["user_id"] '''session.get?'''
+        user_id = session["user_id"]
 
     except KeyError:
         pass
