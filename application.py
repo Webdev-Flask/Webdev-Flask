@@ -107,7 +107,7 @@ def after_request_timeout(response):
     now = time()
 
     try: 
-        user_id = session["user_id"]
+        user_id = session["user_id"] '''session.get?'''
 
     except KeyError:
         pass
@@ -145,7 +145,7 @@ def before_request_inactive():
             user_id = query[index].id
 
             if delta > 300 and query[index].status == "True":
-                session.pop('user_id', None)
+                session.pop(user_id, None)
                 query[index].status = "False"
                 db.session.commit()
                 flash("Session expired after 30 min.", "warning")
