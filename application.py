@@ -102,8 +102,8 @@ def after_request_response(response):
 
 
 # Reset counter on active users
-@app.after_request
-def after_request_timeout(response):
+@app.before_request
+def after_before_timeout():
     now = time()
 
     try: 
@@ -119,8 +119,6 @@ def after_request_timeout(response):
         
     except UnboundLocalError:
         pass
-
-    return response
 
 
 # Log off inactive users
@@ -144,8 +142,7 @@ def before_request_inactive():
             delta = now - before
             user_id = query[index].id
 
-            if delta > 300 and query[index].status == "True":
-                session.pop(user_id, None)
+            if delta > 180 and query[index].status == "True":
                 query[index].status = "False"
                 db.session.commit()
                 flash("Session expired after 30 min.", "warning")
@@ -160,6 +157,12 @@ def login_required(f):
 
         if session.get("user_id") is None:
             return redirect("/signin")
+
+        else:
+            user_id = session["user_id"]
+            query = Users.query.filter_by(id=user_id).first()
+            if query.status == "False":
+                return redirect("/signin")
 
         return f(*args, **kwargs)
 
