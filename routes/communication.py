@@ -28,6 +28,7 @@ def communicationFunction():
         text = html2text.html2text(html)
         address = request.form.get("address")
         newsletter = request.form.get("newsletter")
+        access = getUserRole()
 
 
         # Query database for user emails for newsletter 
@@ -37,13 +38,15 @@ def communicationFunction():
             return redirect("/communication")
 
 
-        if address != "" and newsletter == None:
+        # Single email from admin
+        if address != "" and newsletter == None and access = "admin":
 
             # Send email (subject, email, body)
             sendMail(subject, address, text)
             flash("Single email sent", "success")
 
-        elif address == "" and newsletter == newsletter:
+        # Multiple email from admin
+        elif address == "" and newsletter == newsletter and access = "admin":
 
             # Loop through email list and send 
             index  = 0
@@ -54,6 +57,11 @@ def communicationFunction():
             # Send a copy to the admin
             sendMail(subject, os.environ["EMAIL"], text)
             flash("Group email sent", "success")
+
+        # Single email to admin
+        elif address != "" and newsletter == None and access = "user":
+            sendMail(subject, os.environ["EMAIL"], text)
+            flash("Message sent", "success")
 
         else:
 
