@@ -39,14 +39,14 @@ def communicationFunction():
 
 
         # Single email from admin
-        if address != "" and newsletter == None and access = "admin":
+        if address != "" and newsletter == None and access == "admin":
 
             # Send email (subject, email, body)
             sendMail(subject, address, text)
             flash("Single email sent", "success")
 
         # Multiple email from admin
-        elif address == "" and newsletter == newsletter and access = "admin":
+        elif address == "" and newsletter == newsletter and access == "admin":
 
             # Loop through email list and send 
             index  = 0
@@ -59,7 +59,7 @@ def communicationFunction():
             flash("Group email sent", "success")
 
         # Single email to admin
-        elif address != "" and newsletter == None and access = "user":
+        elif address != "" and newsletter == None and access == "user":
             sendMail(subject, os.environ["EMAIL"], text)
             flash("Message sent", "success")
 
