@@ -1,4 +1,5 @@
 import html2text
+import os
 
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
 from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, sendMail, db, Users
