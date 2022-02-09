@@ -2,7 +2,7 @@ import html2text
 import os
 
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
-from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, sendMail, db, Users
+from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, getUserEmail, sendMail, db, Users
 from flask_mail import Message
 from flask_ckeditor import CKEditor
 
@@ -29,7 +29,10 @@ def communicationFunction():
         text = html2text.html2text(html)
         address = request.form.get("address")
         newsletter = request.form.get("newsletter")
-        access = getUserRole()
+
+
+        # Add contact info to text
+        text += "\n" + getUserName() + "\n" + getUserEmail()
 
 
         # Query database for user emails for newsletter 
@@ -40,14 +43,14 @@ def communicationFunction():
 
 
         # Single email from admin
-        if address != "" and newsletter == None and access == "admin":
+        if address != "" and newsletter == None and getUserRole() == "admin":
 
             # Send email (subject, email, body)
             sendMail(subject, address, text)
             flash("Single email sent", "success")
 
         # Multiple email from admin
-        elif address == "" and newsletter == newsletter and access == "admin":
+        elif address == "" and newsletter == newsletter and getUserRole() == "admin":
 
             # Loop through email list and send 
             index  = 0
@@ -60,7 +63,7 @@ def communicationFunction():
             flash("Group email sent", "success")
 
         # Single email to admin
-        elif address != "" and newsletter == None and access == "user":
+        elif address != "" and newsletter == None and getUserRole() == "user":
             sendMail(subject, os.environ["EMAIL"], text)
             flash("Message sent", "success")
 
