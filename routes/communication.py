@@ -51,8 +51,8 @@ def communicationFunction():
                 sendMail(subject, query[index].email, text)
                 index += 1
                 
-            # Send a copy to Glenn
-            sendMail(subject, os.environ["EMAIL_SEND"], text)
+            # Send a copy to the admin
+            sendMail(subject, os.environ["EMAIL"], text)
             flash("Group email sent", "success")
 
         else:

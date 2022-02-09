@@ -12,10 +12,12 @@
 {% block main %}
     <form action="/communication" method="post" enctype="multipart/form-data">
         <div>
-            <div>
-                <input id="address" autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text">
-            </div>
-            <br>
+            {% if role == "admin" %}
+                <div>
+                    <input id="address" autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text">
+                </div>
+                <br>
+            {% endif %}
             <div>
                 <input id="subject" autocomplete="off" autofocus class="form-control" name="subject" placeholder=" Subject" type="text">
             </div>
@@ -25,11 +27,13 @@
                 {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
             </div>
             <br>
-            <div>
-                <input type="checkbox" id="newsletter" name="newsletter" value="newsletter">
-                <label for="newsletter"> Send to all users?</label>
-            </div>
-            <br>
+            {% if role == "admin" %}
+                <div>
+                    <input type="checkbox" id="newsletter" name="newsletter" value="newsletter">
+                    <label for="newsletter"> Send to all users?</label>
+                </div>
+                <br>
+            {% endif %}
             <div>
                 <button id="submit" type="submit" name="submit" value="submit">Send</button>
             </div>
