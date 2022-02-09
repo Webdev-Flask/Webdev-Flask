@@ -29,10 +29,13 @@ def communicationFunction():
         text = html2text.html2text(html)
         address = request.form.get("address")
         newsletter = request.form.get("newsletter")
+        loggedId = session["user_id"]
 
 
-        # Add contact info to text
-        text += "\n" + getUserName() + "\n" + getUserEmail()
+        # Add contact info to text if sent by a user
+        query = Users.query.filter_by(id=loggedId).first()
+        if query.role == "user":
+            text += "\n" + getUserName() + "\n" + getUserEmail()
 
 
         # Query database for user emails for newsletter 
