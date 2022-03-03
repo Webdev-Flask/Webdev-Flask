@@ -22,7 +22,7 @@
                 <input id="subject" autocomplete="off" autofocus class="form-control" name="subject" placeholder=" Subject" type="text">
             </div>
             <br>
-            <div>
+            <div style="width:500px;">
                 {{ ckeditor.create() }}
                 {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
             </div>
