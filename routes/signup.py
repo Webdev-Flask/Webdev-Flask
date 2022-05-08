@@ -3,6 +3,7 @@ import os
 
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 from application import is_human, sendPin, db, Users, uploadPicture, allowed_file
 from time import time
 from flask_sqlalchemy import SQLAlchemy
