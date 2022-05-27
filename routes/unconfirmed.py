@@ -33,8 +33,6 @@ def unconfirmedFunction():
         if request.form.get("confirm"):
 
             # Check if PIN has less than 10min
-            test = int(pin) and int(now - date)
-            print(test)
             if int(sample) == int(pin) and int(now - date) < 600:
 
                 # Update database with confirmation
