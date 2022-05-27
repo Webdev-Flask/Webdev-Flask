@@ -13,6 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
 from flask_ckeditor import CKEditor
+from flask_socketio import SocketIO
 
 
 # Configure application
@@ -64,6 +65,10 @@ db.create_all()
 
 # Set CKEditor
 ckeditor = CKEditor(app)
+
+
+# Initiate SocketIO
+socketio = SocketIO(app)
 
 
 # Seed DB for admin
