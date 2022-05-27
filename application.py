@@ -418,6 +418,7 @@ from routes.picture import picture
 from routes.delete import delete
 from routes.administration import administration
 from routes.communication import communication
+from routes.chat import chat
 
 
 # Configure Blueprints
@@ -435,3 +436,4 @@ app.register_blueprint(picture)
 app.register_blueprint(delete)
 app.register_blueprint(administration)
 app.register_blueprint(communication)
+app.register_blueprint(chat)
