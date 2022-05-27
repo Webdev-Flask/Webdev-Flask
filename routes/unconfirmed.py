@@ -33,6 +33,8 @@ def unconfirmedFunction():
         if request.form.get("confirm"):
 
             # Check if PIN has less than 10min
+            test = int(pin) and int(now - date)
+            print(test)
             if int(sample) == int(pin) and int(now - date) < 600:
 
                 # Update database with confirmation
@@ -52,7 +54,7 @@ def unconfirmedFunction():
             else:
 
                 # Flash result & redirect
-                flash("Wrong PIN entered and/or PIN timed out. (10min)", "danger")
+                flash("Wrong PIN entered or PIN timed out after 10min", "danger")
                 return redirect("/unconfirmed")
 
 
