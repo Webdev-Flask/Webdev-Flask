@@ -170,7 +170,7 @@ def administrationFunction():
 
 
             # Logged user list
-            if query[index].status == "True":
+            if query[index].status == "True" and query[index].confirmed == "True":
                 logged.extend([[query[index].username, query[index].email, int(now - query[index].timeout)]])
                 
 
