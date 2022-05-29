@@ -409,9 +409,9 @@ def uploadPicture(upload):
 
 
 # SocketIO server side event handler
-@socketio.on('message')
+@socketio.on('data')
 def handle_message(data):
-    print(data)
+    send(data)
 
 
 
