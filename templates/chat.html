@@ -18,7 +18,7 @@
             <input id="data" autocomplete="off" autofocus class="form-control" name="data" placeholder="Say something..." type="text">
         </div>
         <div>
-            <button id="chatSend" type="submit">Send</button>
+            <button id="chatSend" onclick="sending()" type="submit">Send</button>
         </div>
     </div>
 
@@ -34,10 +34,10 @@
         let send = document.getElementById("data").value;
         var socket = io();
 
-        socket.on('connect', function() {
+        function sending() {
             console.log("sent :" + send)
             socket.emit("send", send);
-        });
+        }
 
         socket.on("receive", (receive) => {
             console.log("got :" + receive)
