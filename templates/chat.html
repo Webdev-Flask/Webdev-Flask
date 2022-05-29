@@ -31,12 +31,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
-        let send = document.getElementById("data").value;
         var socket = io();
 
         function sending() {
-            console.log("sent :" + send)
-            socket.emit("send", send);
+            console.log("sent :" + document.getElementById("data").value);
+            socket.emit("send", document.getElementById("data").value);
         }
 
         socket.on("receive", (receive) => {
