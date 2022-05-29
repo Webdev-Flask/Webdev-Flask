@@ -10,15 +10,15 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/chat" method="post">
+    <div>
         <div>
-            <div>
-                <input id="chat" autocomplete="off" autofocus class="form-control" name="chat" placeholder="Say something..." type="text">
-            </div>
-            <div>
-                <button id="chatSend" type="submit">Send</button>
-            </div>
+            <input id="chat" autocomplete="off" autofocus class="form-control" name="chat" placeholder="Say something..." type="text">
         </div>
+        <div>
+            <button id="chatSend" type="submit">Send</button>
+        </div>
+    </div>
+    <form action="/chat" method="post">
     </form>
     <br>
     <div>
