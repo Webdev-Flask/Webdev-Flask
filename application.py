@@ -13,7 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
 from flask_ckeditor import CKEditor
-from flask_socketio import SocketIO, send
+from flask_socketio import SocketIO
 
 
 # Configure application
@@ -412,25 +412,6 @@ def uploadPicture(upload):
 @socketio.on('message')
 def handle_message(data):
     print('received message: ' + data)
-
-
-# SocketIO client side event handler
-@socketio.on('message')
-def handle_message(message):
-    send(message)
-
-
-# SocketIO connection test
-@socketio.on('connect')
-def test_connect(auth):
-    emit('my response', {'data': 'Connected'})
-
-
-# SocketIO disconnection test
-@socketio.on('disconnect')
-def test_disconnect():
-    print('Disconnected')
-
 
 
 
