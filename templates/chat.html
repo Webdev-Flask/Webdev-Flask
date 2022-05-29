@@ -12,7 +12,12 @@
 {% block main %}
     <form action="/chat" method="post">
         <div>
-            Chat section here
+            <div>
+                <input id="chat" autocomplete="off" autofocus class="form-control" name="chat" placeholder="Say something..." type="text">
+            </div>
+            <div>
+                <button id="chatSend" type="submit">Send</button>
+            </div>
         </div>
     </form>
     <br>

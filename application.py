@@ -411,7 +411,7 @@ def uploadPicture(upload):
 # SocketIO server side event handler
 @socketio.on('message')
 def handle_message(data):
-    print('received message: ' + data)
+    print(data)
 
 
 
