@@ -11,13 +11,17 @@
 
 {% block main %}
     <div>
+        <div id="chat">
+
+        </div>
         <div>
-            <input id="chat" autocomplete="off" autofocus class="form-control" name="chat" placeholder="Say something..." type="text">
+            <input id="data" autocomplete="off" autofocus class="form-control" name="data" placeholder="Say something..." type="text">
         </div>
         <div>
             <button id="chatSend" type="submit">Send</button>
         </div>
     </div>
+
     <form action="/chat" method="post">
     </form>
     <br>
@@ -27,15 +31,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
-        let send = document.getElementById("chat").value;
+        let send = document.getElementById("data").value;
         var socket = io();
 
         socket.on('connect', function() {
-            socket.emit('my event', send);
+            socket.emit("send", send);
         });
 
-        socket.on("new_message", (receive) => {
-            document.getElementById("chat").innerHTML += "<br>" + send
+        socket.on("receive", (receive) => {
+            document.getElementById("chat").innerHTML += "<br>" + receive
         });
     </script>
 {% endblock %}
