@@ -38,7 +38,7 @@
             socket.emit("message", document.getElementById("data").value);
         }
 
-        socket.on("messsage", (data) => {
+        socket.on("response", (data) => {
             console.log("got :" + data)
             document.getElementById("chat").innerHTML += "<br>" + data;
         });
