@@ -34,12 +34,10 @@
         var socket = io();
 
         function sending() {
-            console.log("sent :" + document.getElementById("data").value);
             socket.emit("message", document.getElementById("data").value);
         }
 
         socket.on("response", (data) => {
-            console.log("got :" + data)
             document.getElementById("chat").innerHTML += "<br>" + data;
         });
     </script>
