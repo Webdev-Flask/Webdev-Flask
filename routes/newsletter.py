@@ -3,13 +3,13 @@ from application import getUserName, getUserPicture, getUserRole, login_required
 
 
 # Set Blueprints
-preference = Blueprint('preference', __name__,)
+newsletter = Blueprint('newsletter', __name__,)
 
 
-@preference.route("/preference", methods=["GET", "POST"])
+@newsletter.route("/newsletter", methods=["GET", "POST"])
 @login_required
 @confirmed_required
-def preferenceFunction():   
+def newsletterFunction():   
 
     # Force flash() to get the messages on the same page as the redirect.
     get_flashed_messages() 
@@ -47,4 +47,4 @@ def preferenceFunction():
 
     else:
     
-        return render_template("preference.html", name=getUserName(), picture=getUserPicture(), role=getUserRole())
+        return render_template("newsletter.html", name=getUserName(), picture=getUserPicture(), role=getUserRole())

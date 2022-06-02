@@ -425,7 +425,7 @@ from routes.forget import forget
 from routes.username import username
 from routes.password import password
 from routes.email import email
-from routes.preference import preference
+from routes.newsletter import newsletter
 from routes.picture import picture
 from routes.delete import delete
 from routes.administration import administration
