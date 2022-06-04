@@ -52,7 +52,7 @@
         }
 
         socket.on("response", (data) => {
-            document.getElementById("chat").innerHTML += "<br>" + "<div><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"15\" width=\"15\">" + " {{ name }}: </div>" + data;
+            document.getElementById("chat").innerHTML += "<br>" + "<div><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"15\" width=\"15\">" + " {{ name }}: " + data + "</div>";
         });
     </script>
 {% endblock %}
