@@ -328,15 +328,6 @@ def getUserPort():
     return port
 
 
-# Get server port
-def getServerIp():
-
-    # Get port from request
-    ip = request.environ['SERVER_ADDR']
-
-    return ip
-
-
 # Length checker for user input
 def getInputLength(input, limit, message, category, route):
 

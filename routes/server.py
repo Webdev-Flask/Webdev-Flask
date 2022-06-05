@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
-from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, getUserIp, getUserPort, getServerIp
+from application import getUserName, getUserPicture, login_required, confirmed_required, getUserRole, getUserIp, getUserPort
 
 
 # Set Blueprints
@@ -24,4 +24,4 @@ def serverFunction():
     
     else:
 
-        return render_template("server.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), userIp=getUserIp(), userPort=getUserPort(), serverIp=getServerIp())
+        return render_template("server.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), userIp=getUserIp(), userPort=getUserPort())
