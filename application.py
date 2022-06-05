@@ -5,7 +5,7 @@ import requests
 import json
 import base64
 
-from flask import Flask, session, redirect, render_template, flash
+from flask import Flask, session, redirect, render_template, flash, request
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
