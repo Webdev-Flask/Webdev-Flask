@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, session, request
-from application import login_required, confirmed_required, getUserName, getUserPicture, getUserRole, getUserIp
+from application import login_required, confirmed_required, getUserName, getUserPicture, getUserRole
 
 
 # Set Blueprints
@@ -20,4 +20,4 @@ def indexFunction():
 
     else:
 
-        return render_template("index.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), ip=getUserIp())
+        return render_template("index.html", name=getUserName(), picture=getUserPicture(), role=getUserRole())

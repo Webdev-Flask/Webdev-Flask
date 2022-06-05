@@ -308,7 +308,7 @@ def getUserPicture():
 # Get user IP info
 def getUserIp():
 
-    # Get IP from request
+    # Get IP and port from request
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         ip = request.environ['REMOTE_ADDR']
         port = request.environ['REMOTE_PORT']
@@ -447,6 +447,7 @@ from routes.delete import delete
 from routes.administration import administration
 from routes.communication import communication
 from routes.chat import chat
+from routes.server import server
 
 
 # Configure Blueprints
@@ -465,3 +466,4 @@ app.register_blueprint(delete)
 app.register_blueprint(administration)
 app.register_blueprint(communication)
 app.register_blueprint(chat)
+app.register_blueprint(server)

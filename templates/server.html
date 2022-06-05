@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Server
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <form action="/server" method="post" enctype="multipart/form-data">
+        <div>
+            <div>{{ ip }}</div>
+        </div>
+        <br>
+        <div>
+            <a href="/">Index</a>
+        </div>
+    </form>
+{% endblock %}
