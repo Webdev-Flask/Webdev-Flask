@@ -305,20 +305,36 @@ def getUserPicture():
     return query.picture
 
 
-# Get user IP info
+# Get user IP
 def getUserIp():
 
-    # Get IP and port from request
+    # Get IP from request
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         ip = request.environ['REMOTE_ADDR']
-        port = request.environ['REMOTE_PORT']
 
     # If behind proxy
     else:
         ip = request.environ['HTTP_X_FORWARDED_FOR']
-        port = request.environ['REMOTE_PORT']
 
-    return ip + "." + port
+    return ip
+
+
+# Get user port
+def getUserPort():
+
+    # Get port from request
+    port = request.environ['REMOTE_PORT']
+
+    return port
+
+
+# Get server port
+def getServerIp():
+
+    # Get port from request
+    ip = request.environ['SERVER_ADDR']
+
+    return ip
 
 
 # Length checker for user input

@@ -12,7 +12,9 @@
 {% block main %}
     <form action="/server" method="post" enctype="multipart/form-data">
         <div>
-            <div>{{ ip }}</div>
+            <div>user IP: {{ userIp }}</div>
+            <div>user Port: {{ userPort }}</div>
+            <div>server IP: {{ serverIp }}</div>
         </div>
         <br>
         <div>
