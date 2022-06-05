@@ -311,12 +311,14 @@ def getUserIp():
     # Get IP from request
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
         ip = request.environ['REMOTE_ADDR']
+        port = request.environ['REMOTE_PORT']
 
     # If behind proxy
     else:
         ip = request.environ['HTTP_X_FORWARDED_FOR']
+        port = request.environ['REMOTE_PORT']
 
-    return ip
+    return ip + "." + port
 
 
 # Length checker for user input
