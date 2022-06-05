@@ -305,6 +305,20 @@ def getUserPicture():
     return query.picture
 
 
+# Get user IP info
+def getUserIp():
+
+    # Get IP from request
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        ip = request.environ['REMOTE_ADDR']
+
+    # If behind proxy
+    else:
+        ip = request.environ['HTTP_X_FORWARDED_FOR']
+
+    return ip
+
+
 # Length checker for user input
 def getInputLength(input, limit, message, category, route):
 

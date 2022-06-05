@@ -52,7 +52,7 @@
         }
 
         socket.on("response", (data) => {
-            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:center;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\">" + " {{ name }}: " + data + "</div>";
+            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\">" + " {{ name }}: " + data + "</div>";
         });
     </script>
 {% endblock %}
