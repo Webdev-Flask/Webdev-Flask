@@ -24,4 +24,4 @@ def serverFunction():
     
     else:
 
-        return render_template("server.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), userIp=getUserIp(), userPort=getUserIp(), serverIp=getUserIp())
+        return render_template("server.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), userIp=getUserIp(), userPort=getUserPort(), serverIp=getServerIp())
