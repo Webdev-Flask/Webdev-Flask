@@ -48,10 +48,10 @@
         var socket = io();
 
         function sending() {
-            socket.emit("message", document.getElementById("data").value);
+            socket.emit("chatMessage", document.getElementById("data").value);
         }
 
-        socket.on("response", (data) => {
+        socket.on("chatResponse", (data) => {
             document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\">" + " {{ name }}: " + data + "</div>";
         });
     </script>
