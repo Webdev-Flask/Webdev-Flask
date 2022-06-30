@@ -17,7 +17,30 @@
         </div>
         <br>
         <div>
+            <button onclick="sending()" type="submit">Check</button>
+        </div>
+        <div id="result">
+
+        </div>
+        <br>
+        <div>
             <a href="/">Index</a>
         </div>
     </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+
+        function sending() {
+            const date = new Date();
+            let time = date.getTime();
+            socket.emit("serverIncoming", time);
+        }
+
+        socket.on("serverOutgoing", (result) => {
+            document.getElementById("result").innerHTML = "<div></div>";
+            document.getElementById("result").innerHTML += "<br>" + "<div>" + result + "</div>";
+        });
+    </script>
 {% endblock %}

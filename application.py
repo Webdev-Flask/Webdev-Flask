@@ -437,6 +437,14 @@ def handle_message(data):
     emit("chatResponse", data, broadcast=True)
 
 
+# SocketIO server side event handler for server
+@socketio.on("serverIncoming")
+def handle_time(data):
+    date = time()
+    result = date + " and " + data
+    emit("serverOutgoing", result, namespace='/server', broadcast=False)
+
+
 
 # Import routes after to avoid circular import
 from routes.index import index
