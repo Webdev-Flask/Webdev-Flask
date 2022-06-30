@@ -45,8 +45,7 @@
             const date = new Date();
             let time = date.getTime();
             result.push(parseInt(time));
-            console.log(result);
-            document.getElementById("result").innerHTML += "<br>" + "<div>" + result + "</div>";
+            document.getElementById("result").innerHTML += "<br>" + "<div>Initial time: " + result[0] + "</div>" + "<br>" + "<div>Server time: " + result[1] + "</div>" + "<br>" + "<div>Present time: " + result[3] + "</div>" + "<hr>";
         });
     </script>
 {% endblock %}
