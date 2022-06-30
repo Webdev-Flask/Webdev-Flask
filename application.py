@@ -441,7 +441,7 @@ def handle_message(data):
 @socketio.on("serverIncoming")
 def handle_time(data):
     date = int(time() *1000.0)
-    result = "Python is: " + str(date) + " and JS is: " + str(data)
+    result = [int(data), date]
     emit("serverOutgoing", result, broadcast=False)
 
 

@@ -42,6 +42,7 @@
         }
 
         socket.on("serverOutgoing", (result) => {
+            console.log(result)
             document.getElementById("result").innerHTML = "<div></div>";
             document.getElementById("result").innerHTML += "<br>" + "<div>" + result + "</div>";
         });
