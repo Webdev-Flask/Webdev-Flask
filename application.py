@@ -440,7 +440,7 @@ def handle_message(data):
 # SocketIO server side event handler for server
 @socketio.on("serverIncoming")
 def handle_time(data):
-    date = time()
+    date = int(time() * 1000)
     result = str(date) + " and " + str(data)
     print(result)
     emit("serverOutgoing", result, broadcast=False)
