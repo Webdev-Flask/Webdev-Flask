@@ -441,7 +441,7 @@ def handle_message(data):
 @socketio.on("serverIncoming")
 def handle_time(data):
     date = time()
-    result = date + " and " + data
+    result = str(date) + " and " + str(data)
     emit("serverOutgoing", result, namespace='/server', broadcast=False)
 
 
