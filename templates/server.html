@@ -10,23 +10,26 @@
 {% endblock %}
 
 {% block main %}
-    <form action="/server" method="post" enctype="multipart/form-data">
-        <div>
-            <div>user IP: {{ userIp }}</div>
-            <div>user Port: {{ userPort }}</div>
-        </div>
-        <br>
-        <div>
-            <button onclick="sending()" type="submit">Check</button>
-        </div>
-        <div id="result">
 
-        </div>
-        <br>
-        <div>
-            <a href="/">Index</a>
-        </div>
+    <div>
+        <div>user IP: {{ userIp }}</div>
+        <div>user Port: {{ userPort }}</div>
+    </div>
+    <br>
+    <div>
+        <button onclick="sending()" type="submit">Check</button>
+    </div>
+    <div id="result">
+
+    </div>
+
+    <form action="/server" method="post">
     </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
