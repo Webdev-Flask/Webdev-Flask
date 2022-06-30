@@ -44,7 +44,8 @@
         socket.on("serverOutgoing", (result) => {
             const date = new Date();
             let time = date.getTime();
-            result.push(int(time))
+            result.push(parseInt(time));
+            console.log(result);
             document.getElementById("result").innerHTML += "<br>" + "<div>" + result + "</div>";
         });
     </script>
