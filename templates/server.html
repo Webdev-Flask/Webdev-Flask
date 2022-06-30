@@ -42,8 +42,9 @@
         }
 
         socket.on("serverOutgoing", (result) => {
-            console.log(result)
-            document.getElementById("result").innerHTML = "<div></div>";
+            const date = new Date();
+            let time = date.getTime();
+            result.push(int(time))
             document.getElementById("result").innerHTML += "<br>" + "<div>" + result + "</div>";
         });
     </script>
