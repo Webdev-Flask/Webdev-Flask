@@ -440,9 +440,8 @@ def handle_message(data):
 # SocketIO server side event handler for server
 @socketio.on("serverIncoming")
 def handle_time(data):
-    date = int(time() * 1000)
-    result = str(date) + " and " + str(data)
-    print(result)
+    date = time()
+    result = "Python is: " + str(date) + " and JS is: " + str(data)
     emit("serverOutgoing", result, broadcast=False)
 
 
