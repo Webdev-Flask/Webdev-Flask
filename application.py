@@ -442,8 +442,8 @@ def handle_message(data):
 def handle_time(data):
     date = time()
     result = str(date) + " and " + str(data)
-    print("new: " + result)
-    emit("serverOutgoing", result, namespace='/server', broadcast=False)
+    print(result)
+    emit("serverOutgoing", result, broadcast=False)
 
 
 

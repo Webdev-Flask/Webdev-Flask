@@ -38,7 +38,6 @@
         function sending() {
             const date = new Date();
             let time = date.getTime();
-            console.log(time)
             socket.emit("serverIncoming", time);
         }
 
