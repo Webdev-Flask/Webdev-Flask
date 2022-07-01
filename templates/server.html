@@ -38,10 +38,10 @@
         function sending() {
             const date = new Date();
             let time = date.getTime();
-            socket.emit("serverIncoming", time);
+            socket.emit("fromClient", time);
         }
 
-        socket.on("serverOutgoing", (result) => {
+        socket.on("fromServer", (result) => {
             const date = new Date();
             let time = date.getTime();
             result.push(parseInt(time));

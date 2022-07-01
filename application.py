@@ -431,18 +431,18 @@ def uploadPicture(upload):
         return None
 
 
-# SocketIO server side event handler for chat
+# SocketIO server side event handler for /chat
 @socketio.on("chatMessage")
 def handle_message(data):
     emit("chatResponse", data, broadcast=True)
 
 
-# SocketIO server side event handler for server
-@socketio.on("serverIncoming")
+# SocketIO server side event handler for /server
+@socketio.on("fromClient")
 def handle_time(data):
     date = int(time() *1000.0)
     result = [int(data), date]
-    emit("serverOutgoing", result, broadcast=False)
+    emit("fromServer", result, broadcast=False)
 
 
 
