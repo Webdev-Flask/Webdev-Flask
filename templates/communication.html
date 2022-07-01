@@ -24,7 +24,6 @@
             <br>
             <div style="width:500px;">
                 {{ ckeditor.create() }}
-                {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
             </div>
             <br>
             {% if role == "admin" %}
