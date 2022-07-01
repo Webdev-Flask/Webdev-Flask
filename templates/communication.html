@@ -24,6 +24,7 @@
             <br>
             <div style="width:500px;">
                 {{ ckeditor.create() }}
+                {{ ckeditor.load(pkg_type="basic") }}
             </div>
             <br>
             {% if role == "admin" %}
