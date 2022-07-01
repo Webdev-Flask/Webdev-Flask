@@ -31,9 +31,6 @@ def communicationFunction():
         newsletter = request.form.get("newsletter")
         loggedId = session["user_id"]
 
-        print("this is HTML:" + html)
-        print("this is TEXT:" + text)
-
 
         # Add contact info to text if sent by a user
         query = Users.query.filter_by(id=loggedId).first()
