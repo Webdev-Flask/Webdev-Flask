@@ -13,7 +13,7 @@
     <div>
         Existing room(s):
         <div>
-            <ul id="existing">
+            <ul id="existingRoom">
                 {% for element in rooms %}
                     <li>{{ element }}</li>
                 {% endfor %}
@@ -28,7 +28,7 @@
         <br>
         Your room(s):
         <div>
-            <ul>
+            <ul id="yourRoom">
                 {% for element in room %}
                     <li>{{ element }}</li>
                 {% endfor %}
@@ -90,12 +90,10 @@
             socket.emit("createRoom", document.getElementById("room").value);
         };
 
-      
         // Receive room name from server  
         socket.on("createRoom", (data) => {
-            for (let a = 0; data.length < 0; a++) {
-                document.getElementById("existing").innerHTML += "<li>data[a]</li>";
-            }            
+            document.getElementById("existingRoom").innerHTML += "<li>" + data + "</li>";
+            document.getElementById("yourRoom").innerHTML += "<li>" + data + "</li>";           
         });
     
     </script>
