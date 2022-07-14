@@ -23,4 +23,19 @@ def chatFunction():
 
     else:
 
-        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), rooms=eval(getUserRoom()))
+        # Set variables
+        rooms = []
+
+
+        # Query DB for all users
+        query = Users.query.all()
+        
+
+        # Loop through the DB query
+        while index < len(query):
+
+            # Chat room list
+            rooms.extend([query[index].chat])
+
+
+        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms)

@@ -11,10 +11,22 @@
 
 {% block main %}
     <div>
-        Room(s):
+        Existing room(s):
         <div>
             <ul>
                 {% for element in rooms %}
+                    <li>{{ element }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <input id="room" autocomplete="off" autofocus class="form-control" name="room" placeholder="Create or join a room..." type="text">
+        </div>
+        <br>
+        Your room(s):
+        <div>
+            <ul>
+                {% for element in room %}
                     <li>{{ element }}</li>
                 {% endfor %}
             </ul>
