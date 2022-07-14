@@ -118,14 +118,15 @@
 
         // Receive room name from server and delete existingRoom and yourRoom if sent by user
         socket.on("leaveRoom", (data) => {
-            if (data[1] != "{{ name }}") {
-                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
-            };
 
-            if (data[1] == "{{ name }}") {
-                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";
+            let existingRoom = document.getElementById('existingRoom');
+            let yourRoom = document.getElementById('yourRoom');
+
+            for (let a = 0; a < existingRoom.children.length; a++) {
+                if (data[0] == existingRoom.children[a].value) {
+                    existingRoom.children[a].remove()
+                };
             };
-                       
         });
     
     </script>

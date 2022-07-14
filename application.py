@@ -458,6 +458,19 @@ def handle_message(data):
     emit("chatResponse", data, broadcast=True)
 
 
+# SocketIO server side event updating room list with created ones
+@socketio.on("createRoom")
+def handle_message(data):
+    emit("createRoom", data, broadcast=True)
+
+
+# SocketIO server side event updating room list with deleted ones
+@socketio.on("leaveRoom")
+def handle_message(data):
+    emit("leaveRoom", data, broadcast=True)
+
+
+"""
 # SocketIO server side handle to create and join room
 @socketio.on("createRoom")
 def on_join(room):
@@ -472,12 +485,7 @@ def on_leave(room):
     username = getUserName()
     leave_room(room)
     send(username + ' has left the room.', to=room)
-
-
-# SocketIO server side event updating room list
-@socketio.on("createRoom")
-def handle_message(data):
-    emit("createRoom", data, broadcast=True)
+"""
 
 
 
