@@ -457,7 +457,7 @@ def handle_time(data):
 # SocketIO server side handle to create and join room
 @socketio.on("createRoom")
 def on_join(room):
-    username = getUserName():
+    username = getUserName()
     join_room(room)
     send(username + ' has entered the room.', to=room)
 
@@ -465,7 +465,7 @@ def on_join(room):
 # SocketIO server side handle to quit room
 @socketio.on("leaveRoom")
 def on_leave(room):
-    username = getUserName():
+    username = getUserName()
     leave_room(room)
     send(username + ' has left the room.', to=room)
 
