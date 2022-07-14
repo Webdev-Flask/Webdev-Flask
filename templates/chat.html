@@ -129,6 +129,14 @@
                     existingRoom.children[a].remove()
                 };
             };
+
+            for (let a = 0; a < yourRoom.children.length; a++) {
+                console.log(yourRoom.children[a].value)
+                if (data[0] == yourRoom.children[a].value) {
+                    console.log(yourRoom.children[a].value)
+                    yourRoom.children[a].remove()
+                };
+            };
         });
     
     </script>
