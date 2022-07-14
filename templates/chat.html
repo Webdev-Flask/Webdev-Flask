@@ -19,8 +19,9 @@
                 {% endfor %}
             </ul>
         </div>
+        <br>
         <div>
-            <input id="room" autocomplete="off" autofocus class="form-control" name="room" placeholder="Create or join a room..." type="text">
+            <input id="createRoom" autocomplete="off" autofocus class="form-control" name="createRoom" placeholder="Create or join a room..." type="text">
         </div>
         <div>
             <button onclick="create()" type="submit">OK</button>
@@ -33,6 +34,10 @@
                     <li>{{ element }}</li>
                 {% endfor %}
             </ul>
+        </div>
+        <br>
+        <div>
+            <input id="leaveRoom" autocomplete="off" autofocus class="form-control" name="deleteRoom" placeholder="Leave a room..." type="text">
         </div>
         <br>
         <div id="chat">
@@ -87,12 +92,14 @@
 
         // Send room name to create subset
         function create() {
-            socket.emit("createRoom", [document.getElementById("room").value, "{{ name }}"]);
+            socket.emit("createRoom", [document.getElementById("createRoom").value, "{{ name }}"]);
         };
 
         // Receive room name from server and update existing and your room if sent by user
         socket.on("createRoom", (data) => {
-            document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
+            if (data[1] != "{{ name }}") {
+                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
+            };
 
             if (data[1] == "{{ name }}") {
                 document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";

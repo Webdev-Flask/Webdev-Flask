@@ -474,7 +474,7 @@ def on_leave(room):
     send(username + ' has left the room.', to=room)
 
 
-# SocketIO server side event handler for /chat
+# SocketIO server side event updating room list
 @socketio.on("createRoom")
 def handle_message(data):
     emit("createRoom", data, broadcast=True)
