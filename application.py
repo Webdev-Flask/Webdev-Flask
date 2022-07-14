@@ -13,7 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
 from flask_ckeditor import CKEditor
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, join_room, leave_room, rooms
 
 
 # Configure application
@@ -328,6 +328,15 @@ def getUserPort():
     return port
 
 
+# Get user chat Room
+def getUserRoom():
+
+    # Get room from SocketIO
+    room = rooms(socket_id)
+
+    return room
+
+
 # Length checker for user input
 def getInputLength(input, limit, message, category, route):
 
@@ -443,6 +452,22 @@ def handle_time(data):
     date = int(time() *1000.0)
     result = [int(data), date]
     emit("fromServer", result, broadcast=False)
+
+
+# SocketIO server side handle to create and join room
+@socketio.on("createRoom")
+def on_join(room):
+    username = getUserName():
+    join_room(room)
+    send(username + ' has entered the room.', to=room)
+
+
+# SocketIO server side handle to quit room
+@socketio.on("leaveRoom")
+def on_leave(room):
+    username = getUserName():
+    leave_room(room)
+    send(username + ' has left the room.', to=room)
 
 
 

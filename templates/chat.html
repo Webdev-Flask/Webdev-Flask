@@ -11,6 +11,15 @@
 
 {% block main %}
     <div>
+        Room(s):
+        <div>
+            <ul>
+                {% for element in rooms %}
+                    <li>{{ element }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <br>
         <div id="chat">
 
         </div>

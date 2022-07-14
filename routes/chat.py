@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, session, request, flash, get_flashed_messages
-from application import getUserName, getUserPicture, getUserRole, login_required, confirmed_required, db, Users
+from application import getUserName, getUserPicture, getUserRole, getUserRoom, login_required, confirmed_required, db, Users
 
 
 # Set Blueprints
@@ -23,4 +23,4 @@ def chatFunction():
 
     else:
 
-        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole())
+        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), rooms=getUserRoom())
