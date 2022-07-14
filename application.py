@@ -444,18 +444,18 @@ def uploadPicture(upload):
         return None
 
 
-# SocketIO server side event handler for /chat
-@socketio.on("chatMessage")
-def handle_message(data):
-    emit("chatResponse", data, broadcast=True)
-
-
 # SocketIO server side event handler for /server
 @socketio.on("fromClient")
 def handle_time(data):
     date = int(time() *1000.0)
     result = [int(data), date]
     emit("fromServer", result, broadcast=False)
+
+
+# SocketIO server side event handler for /chat
+@socketio.on("chatMessage")
+def handle_message(data):
+    emit("chatResponse", data, broadcast=True)
 
 
 # SocketIO server side handle to create and join room
@@ -472,6 +472,12 @@ def on_leave(room):
     username = getUserName()
     leave_room(room)
     send(username + ' has left the room.', to=room)
+
+
+# SocketIO server side event handler for /chat
+@socketio.on("createRoom")
+def handle_message(data):
+    emit("createRoom", data, broadcast=True)
 
 
 

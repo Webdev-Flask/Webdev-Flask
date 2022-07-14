@@ -13,7 +13,7 @@
     <div>
         Existing room(s):
         <div>
-            <ul>
+            <ul id="existing">
                 {% for element in rooms %}
                     <li>{{ element }}</li>
                 {% endfor %}
@@ -21,6 +21,9 @@
         </div>
         <div>
             <input id="room" autocomplete="off" autofocus class="form-control" name="room" placeholder="Create or join a room..." type="text">
+        </div>
+        <div>
+            <button onclick="create()" type="submit">OK</button>
         </div>
         <br>
         Your room(s):
@@ -36,7 +39,7 @@
 
         </div>
         <div>
-            <input id="data" autocomplete="off" autofocus class="form-control" name="data" placeholder="Say something..." type="text">
+            <input id="text" autocomplete="off" autofocus class="form-control" name="text" placeholder="Say something..." type="text">
         </div>
         <div>
             <button onclick="sending()" type="submit">Send</button>
@@ -51,6 +54,7 @@
     </div>
 
     <style>
+
         #chat {
             width: 500px;
             height: 250px;
@@ -62,18 +66,37 @@
             border-radius: 10px;
             margin-bottom: 10px;
             }
+            
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
+
         var socket = io();
 
+        // Send chat text date to server
         function sending() {
-            socket.emit("chatMessage", document.getElementById("data").value);
-        }
+            socket.emit("chatMessage", document.getElementById("text").value);
+        };
 
+        // Receive the chat text data from server
         socket.on("chatResponse", (data) => {
             document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\">" + " {{ name }}: " + data + "</div>";
         });
+
+
+        // Send room name to create subset
+        function create() {
+            socket.emit("createRoom", document.getElementById("room").value);
+        };
+
+      
+        // Receive room name from server  
+        socket.on("createRoom", (data) => {
+            for (let a = 0; data.length < 0; a++) {
+                document.getElementById("existing").innerHTML += "<li>data[a]</li>";
+            }            
+        });
+    
     </script>
 {% endblock %}
