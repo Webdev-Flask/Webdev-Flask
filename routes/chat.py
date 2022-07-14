@@ -25,17 +25,19 @@ def chatFunction():
 
         # Set variables
         rooms = []
+        index = 0
 
 
         # Query DB for all users
         query = Users.query.all()
-        
+
 
         # Loop through the DB query
         while index < len(query):
 
             # Chat room list
             rooms.extend([query[index].chat])
+            index += 1
 
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms)
