@@ -57,6 +57,7 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
+    chat = db.Column(db.String(1024), nullable=False, default="[]")
 
 
 # Create DB
@@ -331,10 +332,13 @@ def getUserPort():
 # Get user chat Room
 def getUserRoom():
 
-    # Get room from SocketIO
-    room = rooms(request.sid)
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for chat rooms
+    query = Users.query.filter_by(id=loggedId).first()
 
-    return room
+    return query.chat
 
 
 # Length checker for user input
