@@ -332,7 +332,7 @@ def getUserPort():
 def getUserRoom():
 
     # Get room from SocketIO
-    room = rooms(socket_id)
+    room = rooms(request.sid)
 
     return room
 
