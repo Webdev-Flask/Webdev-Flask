@@ -37,7 +37,10 @@
         </div>
         <br>
         <div>
-            <input id="leaveRoom" autocomplete="off" autofocus class="form-control" name="deleteRoom" placeholder="Leave a room..." type="text">
+            <input id="leaveRoom" autocomplete="off" autofocus class="form-control" name="leaveRoom" placeholder="Leave a room..." type="text">
+        </div>
+        <div>
+            <button onclick="leave()" type="submit">OK</button>
         </div>
         <br>
         <div id="chat">
@@ -95,8 +98,26 @@
             socket.emit("createRoom", [document.getElementById("createRoom").value, "{{ name }}"]);
         };
 
-        // Receive room name from server and update existing and your room if sent by user
+        // Receive room name from server and update existingRoom and yourRoom if sent by user
         socket.on("createRoom", (data) => {
+            if (data[1] != "{{ name }}") {
+                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
+            };
+
+            if (data[1] == "{{ name }}") {
+                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";
+            };
+                       
+        });
+
+
+        // Send room name to delete subset
+        function leave() {
+            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, "{{ name }}"]);
+        };
+
+        // Receive room name from server and delete existingRoom and yourRoom if sent by user
+        socket.on("leaveRoom", (data) => {
             if (data[1] != "{{ name }}") {
                 document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
             };
