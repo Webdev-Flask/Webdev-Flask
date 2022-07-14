@@ -24,7 +24,7 @@ def chatFunction():
     else:
 
         # Set variables
-        rooms = []
+        rooms = ""
         index = 0
 
 
@@ -36,7 +36,8 @@ def chatFunction():
         while index < len(query):
 
             # Chat room list
-            rooms.extend(query[index].chat)
+            rooms.extend([query[index].chat])
+
             index += 1
 
 
