@@ -123,6 +123,7 @@
             let yourRoom = document.getElementById('yourRoom');
 
             for (let a = 0; a < existingRoom.children.length; a++) {
+                console.log(existingRoom.children[a].value)
                 if (data[0] == existingRoom.children[a].value) {
                     console.log(existingRoom.children[a].value)
                     existingRoom.children[a].remove()
