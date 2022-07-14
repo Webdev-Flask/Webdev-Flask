@@ -87,13 +87,17 @@
 
         // Send room name to create subset
         function create() {
-            socket.emit("createRoom", document.getElementById("room").value);
+            socket.emit("createRoom", [document.getElementById("room").value, "{{ name }}"]);
         };
 
-        // Receive room name from server  
+        // Receive room name from server and update existing and your room if sent by user
         socket.on("createRoom", (data) => {
-            document.getElementById("existingRoom").innerHTML += "<li>" + data + "</li>";
-            document.getElementById("yourRoom").innerHTML += "<li>" + data + "</li>";           
+            document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
+
+            if (data[1] == "{{ name }}") {
+                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";
+            };
+                       
         });
     
     </script>
