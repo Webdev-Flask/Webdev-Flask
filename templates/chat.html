@@ -121,8 +121,11 @@
 
             let yourRoom = document.getElementById('yourRoom');
 
+            let test = ["a", "b", "c"]
+
             for (let a = 0; a < yourRoom.children.length; a++) {
                 console.log("DATA: " + data)
+                console.log("TEST: " + test)
                 if (data[0] == yourRoom.children[a].value) {
                     yourRoom.removeChild(yourRoom.children[a])
                 };
