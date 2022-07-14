@@ -119,22 +119,11 @@
         // Receive room name from server and delete existingRoom and yourRoom if sent by user
         socket.on("leaveRoom", (data) => {
 
-            let existingRoom = document.getElementById('existingRoom');
             let yourRoom = document.getElementById('yourRoom');
 
-            for (let a = 0; a < existingRoom.children.length; a++) {
-                console.log(existingRoom.children[a].value)
-                if (data[0] == existingRoom.children[a].value) {
-                    console.log(existingRoom.children[a].value)
-                    existingRoom.children[a].remove()
-                };
-            };
-
             for (let a = 0; a < yourRoom.children.length; a++) {
-                console.log(yourRoom.children[a].value)
                 if (data[0] == yourRoom.children[a].value) {
-                    console.log(yourRoom.children[a].value)
-                    yourRoom.children[a].remove()
+                    yourRoom.removeChild(yourRoom.children[a])
                 };
             };
         });
