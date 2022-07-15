@@ -477,6 +477,10 @@ def handle_create_room(data):
     query.chat = temporary
     db.session.commit()
 
+    # joining room and warn said room
+    join_room(data[0])
+    send(getUserName() + ' has entered the room.', to=data[0])
+
     # Send data to user
     emit("createRoom", data, broadcast=True)
 
@@ -500,27 +504,12 @@ def handle_leav_room(data):
     query.chat = temporary
     db.session.commit()
 
+    # leaving room and warn said room
+    leave_room(data[0])
+    send(getUserName() + ' has left the room.', to=data[0])
+
     # Send data to user
     emit("leaveRoom", data, broadcast=True)
-
-
-"""
-# SocketIO server side handle to create and join room
-@socketio.on("createRoom")
-def on_join(room):
-    username = getUserName()
-    join_room(room)
-    send(username + ' has entered the room.', to=room)
-
-
-# SocketIO server side handle to quit room
-@socketio.on("leaveRoom")
-def on_leave(room):
-    username = getUserName()
-    leave_room(room)
-    send(username + ' has left the room.', to=room)
-"""
-
 
 
 # Import routes after to avoid circular import
