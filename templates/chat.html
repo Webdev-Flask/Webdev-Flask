@@ -120,8 +120,11 @@
         socket.on("leaveRoom", (data) => {
 
             let yourRoom = document.getElementById('yourRoom');
-            let yourRoomChildren = yourRoom.children
+            let yourRoomItems = yourRoom.children
 
+            console.log(yourRoomItems);
+
+            /*
             for (let a = 0; a <= yourRoom.children.length; a++) {
 
                 console.log("testing: " + yourRoomChildren[a])
@@ -132,6 +135,7 @@
                 };
 
             };
+            */
         });
     
     </script>
