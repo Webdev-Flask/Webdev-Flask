@@ -116,7 +116,7 @@
             socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, "{{ name }}"]);
         };
 
-        // Receive room name from server and delete existingRoom and yourRoom if sent by user
+        // Receive room name from server and delete room in yourRoom if sent by user
         socket.on("leaveRoom", (data) => {
 
             let yourRoom = document.getElementById('yourRoom');

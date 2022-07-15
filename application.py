@@ -460,13 +460,47 @@ def handle_message(data):
 
 # SocketIO server side event updating room list with created ones
 @socketio.on("createRoom")
-def handle_message(data):
+def handle_create_room(data):
+
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for chat rooms
+    query = Users.query.filter_by(id=loggedId).first()
+
+    # Transform string to array from DB
+    temporary = eval(query.chat)
+    temporary.append(data[0])
+    temporary = str(temporary)
+
+    # Save room name in database
+    query.chat = temporary
+    db.session.commit()
+
+    # Send data to user
     emit("createRoom", data, broadcast=True)
 
 
 # SocketIO server side event updating room list with deleted ones
 @socketio.on("leaveRoom")
-def handle_message(data):
+def handle_leav_room(data):
+
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for chat rooms
+    query = Users.query.filter_by(id=loggedId).first()
+
+    # Transform string to array from DB
+    temporary = eval(query.chat)
+    temporary.remove(data[0])
+    temporary = str(temporary)
+
+    # Save room name in database
+    query.chat = temporary
+    db.session.commit()
+
+    # Send data to user
     emit("leaveRoom", data, broadcast=True)
 
 
