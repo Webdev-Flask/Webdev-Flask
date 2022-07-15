@@ -122,20 +122,12 @@
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
 
-            console.log(yourRoomItems.item(0).innerHTML);
+            for (let a = 0; a < yourRoom.children.length; a++) {
 
-            /*
-            for (let a = 0; a <= yourRoom.children.length; a++) {
-
-                console.log("testing: " + yourRoomChildren[a])
-
-                if (data[0] == yourRoomChildren[a].value) {
-                    yourRoom.removeChild(yourRoom.children[a])
-
+                if (data[0] == yourRoomItems.item(a).innerHTML) {
+                    yourRoom.removeChild(yourRoomItems.item(a))
                 };
-
             };
-            */
         });
     
     </script>
