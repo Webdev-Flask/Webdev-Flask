@@ -94,9 +94,15 @@
 
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
+            let roomList = []
 
-            socket.emit("chatMessage", [document.getElementById("text").value, yourRoom.children]);
-            console.log(yourRoom.children)
+            for (let a = 0; a < yourRoom.children.length; a++) {
+
+                roomList = roomList.push(yourRoomItems.item(a).innerHTML)
+            };
+
+            socket.emit("chatMessage", [document.getElementById("text").value, roomList]);
+            console.log(roomList)
         };
 
         // Receive the chat text data from server
