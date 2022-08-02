@@ -480,7 +480,7 @@ def handle_create_room(data):
     # joining room and warn said room
     join_room(data[0])
     notification = getUserName() + " has entered the room."
-    emit("chatResponse", notification, to=data[0])
+    emit("chatNotification", notification, to=data[0])
 
     # Send data to user
     emit("createRoom", data, broadcast=True)
@@ -508,7 +508,7 @@ def handle_leav_room(data):
     # leaving room and warn said room
     leave_room(data[0])
     notification = getUserName() + " has left the room."
-    emit("chatResponse", notification, to=data[0])
+    emit("chatNotification", notification, to=data[0])
 
     # Send data to user
     emit("leaveRoom", data, broadcast=True)

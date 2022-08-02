@@ -82,6 +82,13 @@
 
         var socket = io();
 
+
+        // Receive the notificatio from server
+        socket.on("chatNotification", (data) => {
+            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\">" + data + "</div>";
+        });
+
+
         // Send chat text date to server
         function sending() {
             socket.emit("chatMessage", document.getElementById("text").value);
