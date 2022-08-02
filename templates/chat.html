@@ -89,10 +89,14 @@
         });
 
 
-        // Send chat text date to server
+        // Send chat text data and rooms list to server
         function sending() {
-            socket.emit("chatMessage", [document.getElementById("text").value, document.getElementById("existingRoom")]);
-            console.log(document.getElementById("existingRoom"))
+
+            let yourRoom = document.getElementById('yourRoom');
+            let yourRoomItems = yourRoom.children
+
+            socket.emit("chatMessage", [document.getElementById("text").value, yourRoom.children]);
+            console.log(yourRoom.children)
         };
 
         // Receive the chat text data from server
