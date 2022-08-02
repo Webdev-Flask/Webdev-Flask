@@ -92,6 +92,7 @@
         // Send chat text date to server
         function sending() {
             socket.emit("chatMessage", [document.getElementById("text").value, document.getElementById("existingRoom").innerHTML]);
+            console.log(document.getElementById("existingRoom").innerHTML)
         };
 
         // Receive the chat text data from server
