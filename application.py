@@ -455,8 +455,9 @@ def handle_time(data):
 # SocketIO server side event handler for /chat
 @socketio.on("chatMessage")
 def handle_message(data):
-    print(data[1])
-    emit("chatResponse", data[0], broadcast=True)
+    ### add user pic and name from here and send to client listening
+    data.append(getUserName, getUserPicture)
+    emit("chatResponse", data, broadcast=True)
 
 
 # SocketIO server side event updating room list with created ones
