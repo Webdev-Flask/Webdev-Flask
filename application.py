@@ -13,7 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
 from flask_ckeditor import CKEditor
-from flask_socketio import SocketIO, emit, send, join_room, leave_room, rooms
+from flask_socketio import SocketIO, emit, join_room, leave_room, rooms
 
 
 # Configure application
@@ -479,7 +479,7 @@ def handle_create_room(data):
 
     # joining room and warn said room
     join_room(data[0])
-    send(getUserName() + ' has entered the room.', to=data[0])
+    emit(getUserName() + ' has entered the room.', to=data[0])
 
     # Send data to user
     emit("createRoom", data, broadcast=True)
@@ -506,7 +506,7 @@ def handle_leav_room(data):
 
     # leaving room and warn said room
     leave_room(data[0])
-    send(getUserName() + ' has left the room.', to=data[0])
+    emit(getUserName() + ' has left the room.', to=data[0])
 
     # Send data to user
     emit("leaveRoom", data, broadcast=True)

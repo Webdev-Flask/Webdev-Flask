@@ -42,7 +42,7 @@ def chatFunction():
             while index < len(query):
 
                 # Chat room list
-                rooms.extend([query[index].chat])
+                rooms.extend([eval(query[index].chat)])
 
                 index += 1
 
