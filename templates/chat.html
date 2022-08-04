@@ -122,8 +122,6 @@
                 roomList = roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            console.log("fonction create actived")
-
             socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
 

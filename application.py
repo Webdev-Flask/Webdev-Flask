@@ -470,11 +470,16 @@ def handle_create_room(data):
 
     # Update room list if room name does not exist and transform array to string for DB
     temporary = eval(query.chat)
+
+    print(temporary)
+    print(data[0])
+
     if data[0] in temporary:
         temporary.append(data[0])
         temporary = str(temporary)
 
     else:
+        print("ELSE")
         flash("Room name already exists", "warning")
         return redirect("/chat")
 
