@@ -468,7 +468,7 @@ def handle_create_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Update room list and transform array to string for DB
+    # Update room list if room name does not exist and transform array to string for DB
     temporary = eval(query.chat)
     if data[0] in temporary:
         temporary.append(data[0])
@@ -505,7 +505,7 @@ def handle_leave_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Update room list and transform array to list for DB
+    # Update room list if room name does exist and transform array to list for DB
     temporary = eval(query.chat)
     if data[0] in temporary:
         temporary.remove(data[0])
