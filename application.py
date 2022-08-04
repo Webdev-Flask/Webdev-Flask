@@ -456,6 +456,7 @@ def handle_time(data):
 @socketio.on("chatMessage")
 def handle_message(data):
     temp = type(data)
+    print(temp)
     ## extension = [getUserName, getUserPicture]
     ## data.extend(extension)
     ## print(data)
