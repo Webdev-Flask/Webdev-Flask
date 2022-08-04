@@ -477,9 +477,13 @@ def handle_create_room(data):
     query.chat = temporary
     db.session.commit()
 
-    # joining room and warn said room
+    # joining room
     join_room(data[0])
-    notification = " has entered the room."
+
+    # notify the room
+    notification = []
+    notification = data.copy()
+    notification[0] = " has entered the room."
     emit("chatNotification", notification, to=data[0])
 
     # Send data to user
@@ -507,7 +511,11 @@ def handle_leav_room(data):
 
     # leaving room and warn said room
     leave_room(data[0])
-    notification = getUserName() + " has left the room."
+
+    # notify said room
+    notification = []
+    notification = data.copy()
+    notification[0] = " has left the room."
     emit("chatNotification", notification, to=data[0])
 
     # Send data to user
