@@ -94,7 +94,6 @@
                 roomList = roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            console.log(roomList)
             socket.emit("chatMessage", [document.getElementById("text").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
 
@@ -122,6 +121,8 @@
 
                 roomList = roomList.push(yourRoomItems.item(a).innerHTML)
             };
+
+            console.log("fonction create actived")
 
             socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
