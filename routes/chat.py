@@ -43,6 +43,7 @@ def chatFunction():
 
                 # Chat room list
                 rooms.extend([eval(query[index].chat)])
+                print(rooms)
 
                 index += 1
 
