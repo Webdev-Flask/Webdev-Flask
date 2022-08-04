@@ -141,6 +141,16 @@
 
         // Send room name to delete subset
         function leave() {
+
+            let yourRoom = document.getElementById('yourRoom');
+            let yourRoomItems = yourRoom.children
+            let roomList = []
+
+            for (let a = 0; a < yourRoom.children.length; a++) {
+
+                roomList = roomList.push(yourRoomItems.item(a).innerHTML)
+            };
+            
             socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
 
