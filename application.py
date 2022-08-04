@@ -457,7 +457,7 @@ def handle_time(data):
 def handle_message(data):
     name = getUserName
     picture = getUserPicture
-    data.extend([name, picture])
+    data.extend(list([name, picture]))
     print(data)
     emit("chatResponse", data, broadcast=True)
 
