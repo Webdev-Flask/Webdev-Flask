@@ -455,7 +455,6 @@ def handle_time(data):
 # SocketIO server side event handler for /chat
 @socketio.on("chatMessage")
 def handle_message(data):
-    print(data)
     emit("chatResponse", data, broadcast=True)
 
 
