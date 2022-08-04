@@ -476,8 +476,10 @@ def handle_create_room(data):
         temporary = str(temporary)
 
     else:
+
+        # Force flash() to get the messages on the same page as the redirect.
+        get_flashed_messages()
         flash("Room name already exists", "warning")
-        return redirect("/chat")
 
     # Save room list in database
     query.chat = temporary
@@ -508,13 +510,17 @@ def handle_leave_room(data):
 
     # Update room list if room name does exist and transform array to list for DB
     temporary = eval(query.chat)
+
     if data[0] in temporary:
         temporary.remove(data[0])
         temporary = str(temporary)
 
     else:
+        
+        # Force flash() to get the messages on the same page as the redirect.
+        get_flashed_messages()
         flash("Room name incorrect", "warning")
-        return redirect("/chat")
+
 
     # Save room list in database
     query.chat = temporary
