@@ -501,7 +501,9 @@ def handle_leave_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Transform string to array from DB
+    print(query.chat)
     temporary = eval(query.chat)
+    print(temporary)
     temporary.remove(data[0])
     temporary = str(temporary)
 
