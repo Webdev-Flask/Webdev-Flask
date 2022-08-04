@@ -39,12 +39,12 @@ def chatFunction():
             rooms = []
 
             # Loop through the DB query
-            # while index < len(query):
+            while index < len(query):
 
                 # Chat room list
-                # rooms.extend([eval(query[index].chat)])
+                rooms.extend([eval(query[index].chat)])
 
-                # index += 1
+                index += 1
 
 
-        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms)
+        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(),  rooms=rooms) #room=eval(getUserRoom()),
