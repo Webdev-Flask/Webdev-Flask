@@ -5,7 +5,7 @@ import requests
 import json
 import base64
 
-from flask import Flask, session, redirect, render_template, flash, get_flashed_messages, request
+from flask import Flask, session, redirect, render_template, flash, request
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -475,12 +475,6 @@ def handle_create_room(data):
         temporary.append(data[0])
         temporary = str(temporary)
 
-    else:
-
-        # Force flash() to get the messages on the same page as the redirect.
-        get_flashed_messages()
-        flash("Room name already exists", "warning")
-
     # Save room list in database
     query.chat = temporary
     db.session.commit()
@@ -514,13 +508,6 @@ def handle_leave_room(data):
     if data[0] in temporary:
         temporary.remove(data[0])
         temporary = str(temporary)
-
-    else:
-
-        # Force flash() to get the messages on the same page as the redirect.
-        get_flashed_messages()
-        flash("Room name incorrect", "warning")
-
 
     # Save room list in database
     query.chat = temporary
