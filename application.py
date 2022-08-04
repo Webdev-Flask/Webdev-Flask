@@ -455,7 +455,7 @@ def handle_time(data):
 # SocketIO server side event handler for /chat
 @socketio.on("chatMessage")
 def handle_message(data):
-    name = getUsername
+    name = getUserName
     picture = getUserPicture
     data.extend([name, picture])
     print(data)
