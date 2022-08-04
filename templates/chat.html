@@ -83,7 +83,7 @@
         var socket = io();
 
 
-        // Receive the notificatio from server
+        // Receive the notification from server
         socket.on("chatNotification", (data) => {
             document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"{{ picture }}\" alt=\"Profile picture of {{ name }}\" height=\"17\" width=\"17\"> " + data + "</div>";
         });
@@ -101,7 +101,7 @@
                 roomList = roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            socket.emit("chatMessage", [document.getElementById("text").value, roomList]);
+            socket.emit("chatMessage", [document.getElementById("text").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
 
         // Receive the chat text data from server
