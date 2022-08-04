@@ -469,7 +469,7 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Update room list if room name does not exist and transform array to string for DB
-    temporary = eval(query.chat)
+    temporary = query.chat
     print(type(temporary))
 
     if data[0] not in temporary:
