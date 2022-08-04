@@ -492,7 +492,7 @@ def handle_create_room(data):
 
 # SocketIO server side event updating room list with deleted ones
 @socketio.on("leaveRoom")
-def handle_leav_room(data):
+def handle_leave_room(data):
 
     # Check who's id is logged in
     loggedId = session["user_id"]
