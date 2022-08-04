@@ -35,15 +35,14 @@ def chatFunction():
         # Check if query is not empty
         if len(query) == 0 :
 
-            # Transform rooms fron string to array
+            # Transform rooms from string to array
             rooms = []
 
             # Loop through the DB query
             while index < len(query):
 
                 # Chat room list
-                rooms.extend([eval(query[index].chat)])
-                print(rooms)
+                rooms.extend([(query[index].chat)])
 
                 index += 1
 
