@@ -470,8 +470,13 @@ def handle_create_room(data):
 
     # Update room list and transform array to string for DB
     temporary = eval(query.chat)
-    temporary.append(data[0])
-    temporary = str(temporary)
+    if data[0] in temporary:
+        temporary.append(data[0])
+        temporary = str(temporary)
+
+    else:
+        flash("Room name already exists", "warning")
+        return redirect("/chat")
 
     # Save room list in database
     query.chat = temporary
@@ -508,6 +513,7 @@ def handle_leave_room(data):
 
     else:
         flash("Room name incorrect", "warning")
+        return redirect("/chat")
 
     # Save room list in database
     query.chat = temporary
