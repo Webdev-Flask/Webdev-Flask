@@ -47,4 +47,4 @@ def chatFunction():
                 index += 1
 
 
-        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(),  rooms=rooms) #room=eval(getUserRoom()),
+        return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms) 
