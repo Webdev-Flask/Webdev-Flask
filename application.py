@@ -5,7 +5,7 @@ import requests
 import json
 import base64
 
-from flask import Flask, session, redirect, render_template, flash, request
+from flask import Flask, session, redirect, render_template, flash, get_flashed_messages, request
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -516,7 +516,7 @@ def handle_leave_room(data):
         temporary = str(temporary)
 
     else:
-        
+
         # Force flash() to get the messages on the same page as the redirect.
         get_flashed_messages()
         flash("Room name incorrect", "warning")
