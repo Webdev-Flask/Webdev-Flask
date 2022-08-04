@@ -468,12 +468,12 @@ def handle_create_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Transform string to array from DB
+    # Update room list and transform array to string for DB
     temporary = eval(query.chat)
     temporary.append(data[0])
     temporary = str(temporary)
 
-    # Save room name in database
+    # Save room list in database
     query.chat = temporary
     db.session.commit()
 
@@ -500,12 +500,16 @@ def handle_leave_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Transform string to array from DB
+    # Update room list and transform array to list for DB
     temporary = eval(query.chat)
-    temporary.remove(data[0])
-    temporary = str(temporary)
+    if data[0] in temporary:
+        temporary.remove(data[0])
+        temporary = str(temporary)
 
-    # Save room name in database
+    else:
+        flash("Room name incorrect", "warning")
+
+    # Save room list in database
     query.chat = temporary
     db.session.commit()
 
