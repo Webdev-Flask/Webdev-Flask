@@ -479,7 +479,7 @@ def handle_create_room(data):
 
     # joining room and warn said room
     join_room(data[0])
-    notification = getUserName() + " has entered the room."
+    notification = " has entered the room."
     emit("chatNotification", notification, to=data[0])
 
     # Send data to user
