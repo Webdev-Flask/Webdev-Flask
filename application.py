@@ -472,6 +472,7 @@ def handle_create_room(data):
     temporary = []
     print(query.chat)
     print(type(query.chat))
+    print(len(eval(query.chat)))
 
     if data[0] not in temporary:
         temporary.append(data[0])
