@@ -478,6 +478,7 @@ def handle_create_room(data):
         temporary.append(eval(query.chat[index]))
         index += 1
 
+    # Check if new room name already exists
     if data[0] not in temporary:
 
         # Add new room name to list
@@ -511,9 +512,17 @@ def handle_leave_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Update room list if room name does exist and transform array to list for DB
-    temporary = eval(query.chat)
+    # Update room list
+    temporary = []
+    index = 0
 
+    # Populate list with existing room names
+    while index < len(eval(query.chat)):
+
+        temporary.append(eval(query.chat[index]))
+        index += 1
+
+    # Check if room name exists and removes it
     if data[0] in temporary:
         temporary.remove(data[0])
         temporary = str(temporary)
