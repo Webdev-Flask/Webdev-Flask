@@ -468,24 +468,30 @@ def handle_create_room(data):
     # Query database for chat rooms
     query = Users.query.filter_by(id=loggedId).first()
 
-    # Update room list if room name does not exist and transform array to string for DB
+    # Update room list
     temporary = []
-    print(query.chat)
-    print(type(query.chat))
-    print(len(eval(query.chat)))
+    index = 0
+
+    # Populate list with existing room names
+    while index < len(eval(query.chat)):
+
+        temporary.append(eval(query.chat[index]))
+        index += 1
 
     if data[0] not in temporary:
+
+        # Add new room name to list
         temporary.append(data[0])
         temporary = str(temporary)
 
-    # Save room list in database
-    query.chat = temporary
-    db.session.commit()
+        # Save room list in database
+        query.chat = temporary
+        db.session.commit()
 
-    # joining room before notification
+    # Joining room before notification
     join_room(data[0])
 
-    # notify the room
+    # Notify the room
     notification = []
     notification = data.copy()
     notification[0] = " has entered the room."
