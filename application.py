@@ -5,7 +5,7 @@ import requests
 import json
 import base64
 
-from flask import Flask, session, redirect, render_template, flash, request
+from flask import Flask, session, redirect, render_template, flash, request, get_flashed_messages
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -484,7 +484,7 @@ def handle_create_room(data):
 
     # Warn user
     else:
-
+        get_flashed_messages()
         flash("Room name is already taken", "warning")
         return redirect("/chat")
 
@@ -524,7 +524,7 @@ def handle_leave_room(data):
 
     # Warn user no such room name exists
     else:
-
+        get_flashed_messages()
         flash("No room with that name", "warning")
         return redirect("/chat")
 
