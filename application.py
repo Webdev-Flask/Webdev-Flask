@@ -471,6 +471,7 @@ def handle_create_room(data):
     # Update room list
     temporary = []
     temporary = eval(query.chat).copy()
+    print(temporary)
 
     # Check if new room name already exists
     if data[0] not in temporary:
@@ -509,6 +510,7 @@ def handle_leave_room(data):
     # Update room list
     temporary = []
     temporary = eval(query.chat).copy()
+    print(temporary)
 
     # Check if room name exists and removes it
     if data[0] in temporary:
