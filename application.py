@@ -482,6 +482,12 @@ def handle_create_room(data):
         query.chat = temporary
         db.session.commit()
 
+    # Warn user
+    else:
+
+        flash("Room name is already taken", "warning")
+        return redirect("/chat")
+
     # Joining room before notification
     join_room(data[0])
 
@@ -515,6 +521,12 @@ def handle_leave_room(data):
     # If only one element, create an empty array for DB
     elif len(temporary) == 1 and data[0] in temporary:
         temporary = "[]" 
+
+    # Warn user no such room name exists
+    else:
+
+        flash("Room name is already taken", "warning")
+        return redirect("/chat")
 
     # Save room list in database
     query.chat = temporary
