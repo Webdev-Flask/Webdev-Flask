@@ -119,7 +119,7 @@
 
             for (let a = 0; a < yourRoom.children.length; a++) {
 
-                roomList = roomList.push(yourRoomItems.item(a).innerHTML)
+                roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
             socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
