@@ -5,7 +5,7 @@ import requests
 import json
 import base64
 
-from flask import Flask, session, redirect, render_template, flash, request, get_flashed_messages
+from flask import Flask, session, redirect, render_template, flash, request
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -482,12 +482,6 @@ def handle_create_room(data):
         query.chat = temporary
         db.session.commit()
 
-    # Warn user
-    else:
-        get_flashed_messages()
-        flash("Room name is already taken", "warning")
-        return redirect("/chat")
-
     # Joining room before notification
     join_room(data[0])
 
@@ -521,12 +515,6 @@ def handle_leave_room(data):
     # If only one element, create an empty array for DB
     elif len(temporary) == 1 and data[0] in temporary:
         temporary = "[]" 
-
-    # Warn user no such room name exists
-    else:
-        get_flashed_messages()
-        flash("No room with that name", "warning")
-        return redirect("/chat")
 
     # Save room list in database
     query.chat = temporary
