@@ -469,9 +469,7 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Update room list
-    temporary = []
     temporary = eval(query.chat).copy()
-    print(temporary)
 
     # Check if new room name already exists
     if data[0] not in temporary:
@@ -488,7 +486,6 @@ def handle_create_room(data):
     join_room(data[0])
 
     # Notify the room
-    notification = []
     notification = data.copy()
     notification[0] = " has entered the room."
     emit("chatNotification", notification, to=data[0])
@@ -508,21 +505,22 @@ def handle_leave_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Update room list
-    temporary = []
     temporary = eval(query.chat).copy()
-    print(temporary)
 
-    # Check if room name exists and removes it
-    if data[0] in temporary:
+    # Check if room name exists and check if the list has more than one element
+    if len(temporary) > 1 and data[0] in temporary:        
         temporary.remove(data[0])
         temporary = str(temporary)
+
+    # If only one element, create an empty array for DB
+    elif len(temporary) == 1 and data[0] in temporary:
+        temporary = "[]" 
 
     # Save room list in database
     query.chat = temporary
     db.session.commit()
 
     # notify the room
-    notification = []
     notification = data.copy()
     notification[0] = " has left the room."
     emit("chatNotification", notification, to=data[0])
