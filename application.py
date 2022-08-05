@@ -525,7 +525,7 @@ def handle_leave_room(data):
     # Warn user no such room name exists
     else:
 
-        flash("Room name is already taken", "warning")
+        flash("No room with that name", "warning")
         return redirect("/chat")
 
     # Save room list in database
