@@ -471,6 +471,7 @@ def handle_create_room(data):
     # Update room list if room name does not exist and transform array to string for DB
     temporary = []
     print(query.chat)
+    print(type(query.chat))
 
     if data[0] not in temporary:
         temporary.append(data[0])
