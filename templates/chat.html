@@ -40,7 +40,7 @@
             <input id="leaveRoom" autocomplete="off" autofocus class="form-control" name="leaveRoom" placeholder="Leave a room..." type="text">
         </div>
         <div>
-            <button onclick="leave()" type="submit">OK</button>
+            <button onclick="leave(document.getElementById('leaveRoom').value)" type="submit">OK</button>
         </div>
         <br>
         <div id="chat">
@@ -139,7 +139,7 @@
 
 
         // Send room name to delete subset
-        function leave() {
+        function leave(roomName) {
 
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
@@ -150,7 +150,7 @@
                 roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
+            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}", roomName]);
         };
 
 
