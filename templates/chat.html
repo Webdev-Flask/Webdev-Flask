@@ -133,7 +133,7 @@
             };
 
             if (data[2] == "{{ name }}") {
-                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";
+                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>" + "<button onclick=\"leave()\">" + X + "</button>";
             };                    
         });
 
