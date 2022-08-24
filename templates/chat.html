@@ -133,13 +133,13 @@
             };
 
             if (data[2] == "{{ name }}") {
-                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + "</li>";
+                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + " " + "<button onclick=\"leave(" + String(data[0]) + ")\" type=\"submit\">" + "X" + "</button>" + "</li>";
             };                    
         });
 
 
         // Send room name to delete subset room
-        function leave() {
+        function leave(thisRoom) {
 
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
@@ -150,7 +150,7 @@
                 roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
+            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}", thisRoom]);
         };
 
 
