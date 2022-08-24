@@ -31,14 +31,12 @@
         <div>
             <ul id="yourRoom">
                 {% for element in room %}
-                    <li>{{ element }}</li>
+                    <li>{{ element }}  <button id="{{ element }}" onclick=leave(this.id) type="submit"> X </button></li>  
                 {% endfor %}
             </ul>
         </div>
         <br>
-        <br>
         <div id="chat">
-
         </div>
         <div>
             <input id="text" autocomplete="off" autofocus class="form-control" name="text" placeholder="Say something..." type="text">
