@@ -498,8 +498,6 @@ def handle_create_room(data):
 @socketio.on("leaveRoom")
 def handle_leave_room(data):
 
-    print(data[4])
-
     # Check who's id is logged in
     loggedId = session["user_id"]
         
