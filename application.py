@@ -498,8 +498,6 @@ def handle_create_room(data):
 @socketio.on("leaveRoom")
 def handle_leave_room(data):
 
-    print(data[4])
-
     # Check who's id is logged in
     loggedId = session["user_id"]
         
@@ -509,13 +507,25 @@ def handle_leave_room(data):
     # Update room list
     temporary = eval(query.chat).copy()
 
+    # Check if user used the leave button
+    if data[4] is None:
+
+        # Check if room name exists and check if the list has more than one element
+        if len(temporary) > 1 and data[0] in temporary:        
+            temporary.remove(data[0])
+            temporary = str(temporary)
+
+        # If only one element, create an empty array for DB
+        elif len(temporary) == 1 and data[0] in temporary:
+            temporary = "[]" 
+
     # Check if room name exists and check if the list has more than one element
-    if len(temporary) > 1 and data[0] in temporary:        
+    elif len(temporary) > 1 and data[4] in temporary:        
         temporary.remove(data[0])
         temporary = str(temporary)
 
     # If only one element, create an empty array for DB
-    elif len(temporary) == 1 and data[0] in temporary:
+    elif len(temporary) == 1 and data[4] in temporary:
         temporary = "[]" 
 
     # Save room list in database
