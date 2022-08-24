@@ -109,36 +109,7 @@
             document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + data[0] + "</div>";
         });
 
-
-        // Send room name to create subset
-        function create() {
-
-            let yourRoom = document.getElementById('yourRoom');
-            let yourRoomItems = yourRoom.children
-            let roomList = []
-
-            for (let a = 0; a < yourRoom.children.length; a++) {
-
-                roomList.push(yourRoomItems.item(a).innerHTML)
-            };
-
-            socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
-        };
-
-
-        // Receive room name from server and update existingRoom and yourRoom if sent by user
-        socket.on("createRoom", (data) => {
-            if (data[2] != "{{ name }}") {
-                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
-            };
-
-            if (data[2] == "{{ name }}") {
-                thatRoom = data[0]
-                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + " " + "<button onclick=\"leave(" + thatRoom + ")\" type=\"submit\">" + "X" + "</button>" + "</li>";
-            };                    
-        });
-
-
+        
         // Send room name to delete subset room
         function leave(roomName) {
 
@@ -167,6 +138,34 @@
                     yourRoom.removeChild(yourRoomItems.item(a))
                 };
             };
+        });
+
+
+        // Send room name to create subset
+        function create() {
+
+            let yourRoom = document.getElementById('yourRoom');
+            let yourRoomItems = yourRoom.children
+            let roomList = []
+
+            for (let a = 0; a < yourRoom.children.length; a++) {
+
+                roomList.push(yourRoomItems.item(a).innerHTML)
+            };
+
+            socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
+        };
+
+
+        // Receive room name from server and update existingRoom and yourRoom if sent by user
+        socket.on("createRoom", (data) => {
+            if (data[2] != "{{ name }}") {
+                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
+            };
+
+            if (data[2] == "{{ name }}") {
+                document.getElementById("yourRoom").innerHTML += "<li>" + data[0] + " " + "<button onclick=\"leave(" + data[0] + ")\" type=\"submit\">" + "X" + "</button>" + "</li>";
+            };                    
         });
     
     </script>
