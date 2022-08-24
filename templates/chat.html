@@ -36,12 +36,6 @@
             </ul>
         </div>
         <br>
-        <div>
-            <input id="leaveRoom" autocomplete="off" autofocus class="form-control" name="leaveRoom" placeholder="Leave a room..." type="text">
-        </div>
-        <div>
-            <button onclick="leave()" type="submit">OK</button>
-        </div>
         <br>
         <div id="chat">
 
@@ -150,7 +144,7 @@
                 roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
-            socket.emit("leaveRoom", [document.getElementById("leaveRoom").value, roomList, "{{ name }}", "{{ picture }}", thisRoom]);
+            socket.emit("leaveRoom", [thisRoom, roomList, "{{ name }}", "{{ picture }}"]);
         };
 
 
