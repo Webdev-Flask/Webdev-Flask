@@ -469,6 +469,7 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Update room list
+    print(query.chat)
     temporary = eval(query.chat).copy()
 
     # Check if new room name already exists
