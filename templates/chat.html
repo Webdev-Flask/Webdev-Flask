@@ -21,7 +21,7 @@
         </div>
         <br>
         <div>
-            <button onclick="create(this.childNode.value)" type="submit"><input id="createRoom" autocomplete="off" autofocus class="form-control" name="createRoom" placeholder="Create or join a room..." type="text">OK</button>
+            <input id="createRoom" autocomplete="off" autofocus class="form-control" name="createRoom" placeholder="Create or join a room..." type="text">   <button onclick="create()" type="submit"></button>OK</button>
         </div>
         <br>
         Your room(s):
@@ -100,7 +100,7 @@
 
 
         // Send room name to create subset
-        function create(thisRoom) {
+        function create() {
 
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
@@ -111,7 +111,7 @@
                 roomList.push(yourRoomItems.item(a).id)
             };
 
-            socket.emit("createRoom", [thisRoom, roomList, "{{ name }}", "{{ picture }}"]);
+            socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
         };
 
 
