@@ -31,7 +31,7 @@
         <div>
             <ul id="yourRoom">
                 {% for element in room %}
-                    <li>{{ element }}  <button id="{{ element }}" onclick=leave(this.id) type="submit"> X </button></li>  
+                    <li id="{{ element }}">{{ element }}  <button onclick=leave(this.parentNode.id) type="submit"> X </button></li>  
                 {% endfor %}
             </ul>
         </div>
