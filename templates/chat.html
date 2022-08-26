@@ -125,7 +125,7 @@
             };
 
             if (data[2] == "{{ name }}") {
-                document.getElementById("yourRoom").innerHTML += "<li class=\"" + data[0] + "\">" + data[0] + " " + "<button class=\"" + data[0] + "\" onclick=\"leave(this.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+                document.getElementById("yourRoom").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
             };                    
         });
 
