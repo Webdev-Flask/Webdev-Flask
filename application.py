@@ -529,6 +529,8 @@ def handle_leave_room(data):
     # leaving room after notification
     leave_room(data[0])
 
+    print(data)
+
     # Send data to user
     emit("leaveRoom", data, broadcast=True)
 
