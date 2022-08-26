@@ -469,7 +469,6 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Update room list
-    print(query.chat)
     temporary = eval(query.chat).copy()
 
     # Check if new room name already exists
@@ -528,8 +527,6 @@ def handle_leave_room(data):
 
     # leaving room after notification
     leave_room(data[0])
-
-    print(data)
 
     # Send data to user
     emit("leaveRoom", data, broadcast=True)

@@ -152,9 +152,10 @@
             let yourRoom = document.getElementById('yourRoom');
             let yourRoomItems = yourRoom.children
 
-            console.log(data)
-
             for (let a = 0; a < yourRoom.children.length; a++) {
+
+                console.log(data[0])
+                console.log(yourRoomItems.item(a).innerHTML)
 
                 if (data[0] == yourRoomItems.item(a).innerHTML) {
 
