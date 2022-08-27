@@ -31,6 +31,8 @@ def chatFunction():
         # Query DB for all users
         query = Users.query.all()
 
+        print(query)
+
 
         # Check if query is not empty
         if len(query) == 0 :
