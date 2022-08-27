@@ -117,13 +117,12 @@
 
         // Receive room name from server and update existingRoom and yourRoom if sent by user
         socket.on("createRoom", (data) => {
-            if (data[2] != "{{ name }}") {
-                document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
-            };
 
             if (data[2] == "{{ name }}") {
                 document.getElementById("yourRoom").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
-            };                    
+            };
+            
+            document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
         });
 
 
