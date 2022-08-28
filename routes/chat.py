@@ -40,7 +40,7 @@ def chatFunction():
             index += 1
 
         # Make a unique list 
-        for items in roomLists:
+        for eval(items) in roomLists:
             for item in items:
                 rooms.append(item)
 
