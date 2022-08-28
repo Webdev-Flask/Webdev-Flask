@@ -31,19 +31,19 @@ def chatFunction():
         # Query DB for all users
         query = Users.query.all()
 
-        # Check if query is not empty
-        if len(query) == 0 :
+        # Transform rooms from string to array
+        rooms = []
 
-            # Transform rooms from string to array
-            rooms = []
+        # Loop through the DB query
+        while index < len(query):
 
-            # Loop through the DB query
-            while index < len(query):
+            # Chat room list
+            rooms.extend([(query[index].chat)])
 
-                # Chat room list
-                rooms.extend([(query[index].chat)])
+            index += 1
 
-                index += 1
+        
+        print(rooms)
 
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms) 
