@@ -39,10 +39,13 @@ def chatFunction():
 
             index += 1
 
+        print(roomLists)
+
         # Make a unique list 
-        for eval(items) in roomLists:
+        for items in roomLists:
             for item in items:
                 rooms.append(item)
 
+        print(rooms)
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms) 
