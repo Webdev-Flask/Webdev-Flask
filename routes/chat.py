@@ -31,9 +31,6 @@ def chatFunction():
         # Query DB for all users
         query = Users.query.all()
 
-        print(query.chat)
-
-
         # Check if query is not empty
         if len(query) == 0 :
 
@@ -47,8 +44,6 @@ def chatFunction():
                 rooms.extend([(query[index].chat)])
 
                 index += 1
-
-        print(rooms)
 
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms) 
