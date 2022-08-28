@@ -43,6 +43,7 @@ def chatFunction():
 
         # Make a unique list 
         for items in roomLists:
+            items = eval(items)
             for item in items:
                 rooms.append(item)
 
