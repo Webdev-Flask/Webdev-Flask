@@ -74,13 +74,13 @@
         // Send chat text data and rooms list to server
         function sending() {
 
-            let yourRoom = document.getElementById('yourRoom').querySelectorAll("li"); 
-            //let yourRoomItems = yourRoom.children
+            let yourRoom = document.getElementById('yourRoom') 
+            let yourRoomItems = yourRoom.children
             let roomList = []
 
-            for (let a = 0; a < yourRoom.length; a++) {
+            for (let a = 0; a < yourRoomItems.length; a++) {
 
-                roomList.push(yourRoom.item(a).innerHTML)
+                roomList.push(yourRoom.item(a).value)
             };
 
             socket.emit("chatMessage", [document.getElementById("text").value, roomList, "{{ name }}", "{{ picture }}"]);
