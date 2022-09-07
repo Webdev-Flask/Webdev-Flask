@@ -75,11 +75,10 @@
         function sending() {
 
             let yourRoom = document.getElementById('yourRoom') 
-            let yourRoomItems = yourRoom.children
+            let yourRoomItems = yourRoom.getElementsByTagName('li')
             let roomList = []
 
             for (let a = 0; a < yourRoomItems.length; a++) {
-
                 roomList.push(yourRoomItems.item(a).value)
             };
 
@@ -107,7 +106,6 @@
             let roomList = []
 
             for (let a = 0; a < yourRoom.children.length; a++) {
-
                 roomList.push(yourRoomItems.item(a).id)
             };
 
@@ -134,7 +132,6 @@
             let roomList = []
 
             for (let a = 0; a < yourRoom.children.length; a++) {
-
                 roomList.push(yourRoomItems.item(a).innerHTML)
             };
 
