@@ -456,6 +456,7 @@ def handle_time(data):
 @socketio.on("chatMessage")
 def handle_message(data):
     for item in data[0]:
+        print(item)
         emit("chatResponse", data, to=data[0])
 
 
