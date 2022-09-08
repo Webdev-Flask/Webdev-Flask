@@ -457,7 +457,7 @@ def handle_time(data):
 def handle_message(data):
     index = 0
     print(len(data[1]))
-    while index > len(data[1]):
+    while index < len(data[1]):
         print(data[index])
         emit("chatResponse", data, to=data[index])
         index += 1
