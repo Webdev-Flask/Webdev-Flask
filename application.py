@@ -456,7 +456,7 @@ def handle_time(data):
 @socketio.on("chatMessage")
 def handle_message(data):
     index = 0
-    while index > data[1].lenght:
+    while index > len(data[1]):
         print(data[index])
         emit("chatResponse", data, to=data[index])
         index += 1
