@@ -13,7 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mail import Message, Mail
 from time import time
 from flask_ckeditor import CKEditor
-from flask_socketio import SocketIO, emit, send, join_room, leave_room, rooms
+from flask_socketio import SocketIO, emit, join_room, leave_room, rooms
 
 
 # Configure application
@@ -457,6 +457,7 @@ def handle_time(data):
 def handle_message(data):
     index = 0
     while index < len(data[1]):
+        join_room(data[1][index])
         emit("chatResponse", data, to=data[1][index])
         index += 1
 
