@@ -87,6 +87,7 @@
 
         // Receive the chat text data from server
         socket.on("chatResponse", (data) => {
+            console.log(data)
             document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + ": " + data[0] + "</div>";
         });
 
