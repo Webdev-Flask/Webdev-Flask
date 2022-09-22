@@ -11,19 +11,19 @@
 
 {% block main %}
     <div id="c01">
-        <div>
-            <div id="c02"></div>
+        <div id="c02">
+            <div id="c03"></div>
             <div>
                 <input id="text" name="text" placeholder="Say something..." type="text">
                 <button type="submit">Send</button>
             </div>
         </div>
-        <div>
-            <div id="c03">
+        <div id="c02">
+            <div>
                 <input id="create" name="create" placeholder="Create a room" type="text">
                 <button onclick="join()">Join</button>
             </div>
-            <div id="c04">
+            <div>
                 <div id="rooms"></div>
             </div>
         </div>
@@ -45,6 +45,11 @@
         }
 
         #c02 {
+            margin-left: 10px;
+            margin-right: 10px; 
+        }
+
+        #c03 {
             width: 500px;
             height: 250px;
             overflow: auto;
@@ -54,14 +59,6 @@
             padding: 10px;
             border-radius: 10px;
             margin-bottom: 10px;
-        }
-
-        #c03 {
-            margin-right: 10px;
-        }
-
-        #c04 {
-            margin-left: 10px;
         }
 
     </style>
