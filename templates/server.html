@@ -17,7 +17,7 @@
     </div>
     <br>
     <div>
-        <button onclick="sending()" type="submit">Check</button>
+        <button onclick="time()" type="submit">Check time</button>
     </div>
     <div id="result">
 
@@ -35,13 +35,13 @@
     <script type="text/javascript" charset="utf-8">
         var socket = io();
 
-        function sending() {
+        function time() {
             const date = new Date();
             let time = date.getTime();
-            socket.emit("fromClient", time);
+            socket.emit("time", time);
         }
 
-        socket.on("fromServer", (result) => {
+        socket.on("time", (result) => {
             const date = new Date();
             let time = date.getTime();
             result.push(parseInt(time));

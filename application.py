@@ -57,8 +57,14 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
-    chat = db.Column(db.String(1024), nullable=False, default="[]")
 
+class Chats(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
+    username = db.Column(db.String(1024), nullable=False)
+    channel = db.Column(db.String(1024), nullable=False)
+    date = db.Column(db.Integer, nullable=False, default=0)
+    text = db.Column(db.Text, nullable=False)
+    
 
 # Create DB
 db.create_all()
@@ -444,12 +450,12 @@ def uploadPicture(upload):
         return None
 
 
-# SocketIO server side event handler for /server
-@socketio.on("fromClient")
+# SocketIO server side event handler for checking time difference
+@socketio.on("time")
 def handle_time(data):
-    date = int(time() *1000.0)
+    date = int(time() * 1000.0)
     result = [int(data), date]
-    emit("fromServer", result, broadcast=False)
+    emit("time", result, broadcast=False)
 
 
 # Import routes after to avoid circular import

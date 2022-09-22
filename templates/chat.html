@@ -11,6 +11,13 @@
 
 {% block main %}
     <div>
+        <div id="chat"></div>
+        <div>
+            <input id="text" autocomplete="off" autofocus class="form-control" name="text" placeholder="Say something..." type="text">
+        </div>
+        <div>
+            <button type="submit">Send</button>
+        </div>
     </div>
 
     <form action="/chat" method="post">
@@ -21,7 +28,17 @@
     </div>
 
     <style>
-            
+        #chat {
+            width: 500px;
+            height: 250px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 
     <script>
