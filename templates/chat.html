@@ -10,23 +10,24 @@
 {% endblock %}
 
 {% block main %}
-    <div id="c01">
-        <div id="c02">
-            <input id="create" name="create" placeholder="Create a room" type="text">
-            <button onclick="join()">Join</button>
-        </div>
-        <div id="c03">
-            <div id="rooms"></div>
-        </div>
-    </div>
-
     <div>
-        <div id="chat"></div>
-        <div>
-            <input id="text" name="text" placeholder="Say something..." type="text">
+        <div id="c01">
+            <div id="c02"></div>
+            <div>
+                <input id="text" name="text" placeholder="Say something..." type="text">
+            </div>
+            <div>
+                <button type="submit">Send</button>
+            </div>
         </div>
         <div>
-            <button type="submit">Send</button>
+            <div id="c03">
+                <input id="create" name="create" placeholder="Create a room" type="text">
+                <button onclick="join()">Join</button>
+            </div>
+            <div id="c04">
+                <div id="rooms"></div>
+            </div>
         </div>
     </div>
 
@@ -38,7 +39,14 @@
     </div>
 
     <style>
-        #chat {
+        #c01 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+
+        #c02 {
             width: 500px;
             height: 250px;
             overflow: auto;
@@ -50,18 +58,11 @@
             margin-bottom: 10px;
         }
 
-        #c01 {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-        }
-
-        #c02 {
+        #c03 {
             margin-right: 10px;
         }
 
-        #c03 {
+        #c04 {
             margin-left: 10px;
         }
 
