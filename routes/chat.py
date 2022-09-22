@@ -23,29 +23,5 @@ def chatFunction():
 
     else:
 
-        # Set variables
-        index = 0
-        roomLists = []
-        rooms = []
-
-
-        # Query DB for all users
-        query = Users.query.all()
-
-
-        # Loop through the DB query
-        while index < len(query):
-
-            # Chat room list
-            roomLists.extend([(query[index].chat)])
-            index += 1
-
-
-        # Make a unique list 
-        for items in roomLists:
-            items = eval(items)
-            for item in items:
-                rooms.append(item)
-
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), room=eval(getUserRoom()), rooms=rooms) 

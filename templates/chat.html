@@ -11,36 +11,6 @@
 
 {% block main %}
     <div>
-        Existing room(s):
-        <div>
-            <ul id="existingRoom">
-                {% for element in rooms %}
-                    <li>{{ element }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <br>
-        <div>
-            <input id="createRoom" autocomplete="off" autofocus class="form-control" name="createRoom" placeholder="Create or join a room..." type="text">   <button onclick="create()" type="submit">OK</button>
-        </div>
-        <br>
-        Your room(s):
-        <div>
-            <ul id="yourRoom">
-                {% for element in room %}
-                    <li id="{{ element }}">{{ element }}  <button onclick=leave(this.parentNode.id) type="submit"> X </button></li>  
-                {% endfor %}
-            </ul>
-        </div>
-        <br>
-        <div id="chat">
-        </div>
-        <div>
-            <input id="text" autocomplete="off" autofocus class="form-control" name="text" placeholder="Say something..." type="text">
-        </div>
-        <div>
-            <button onclick="sending()" type="submit">Send</button>
-        </div>
     </div>
 
     <form action="/chat" method="post">
@@ -51,102 +21,10 @@
     </div>
 
     <style>
-
-        #chat {
-            width: 500px;
-            height: 250px;
-            overflow: auto;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid black;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            }
             
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf-8">
-
-        var socket = io();
-
-        // Send chat text data and rooms list to server
-        function sending() {
-
-            let yourRoom = document.getElementById('yourRoom').getElementsByTagName('li');
-            let roomList = []
-
-            for (let a = 0; a < yourRoom.length; a++) {
-                roomList.push(yourRoom.item(a).childNodes[0].nodeValue)
-            };
-
-            socket.emit("chatMessage", [document.getElementById("text").value, roomList, "{{ name }}", "{{ picture }}"]);
-        };
-
-
-        // Receive the chat text data from server
-        socket.on("chatResponse", (data) => {
-            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + ": " + data[0] + "</div>";
-        });
-
-
-        // Receive the notification from server
-        socket.on("chatNotification", (data) => {
-            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + data[0] + "</div>";
-        });
-
-
-        // Send room name to create subset
-        function create() {
-
-            let yourRoom = document.getElementById('yourRoom');
-            let yourRoomItems = yourRoom.children
-            let roomList = []
-
-            for (let a = 0; a < yourRoom.children.length; a++) {
-                roomList.push(yourRoomItems.item(a).id)
-            };
-
-            socket.emit("createRoom", [document.getElementById("createRoom").value, roomList, "{{ name }}", "{{ picture }}"]);
-        };
-
-
-        // Receive room name from server and update existingRoom and yourRoom if sent by user
-        socket.on("createRoom", (data) => {
-
-            if (data[2] == "{{ name }}") {
-                document.getElementById("yourRoom").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
-            };
-            
-            document.getElementById("existingRoom").innerHTML += "<li>" + data[0] + "</li>";
-        });
-
-
-        // Send room name to delete subset room
-        function leave(thisRoom) {
-
-            let yourRoom = document.getElementById('yourRoom');
-            let yourRoomItems = yourRoom.children
-            let roomList = []
-
-            for (let a = 0; a < yourRoom.children.length; a++) {
-                roomList.push(yourRoomItems.item(a).innerHTML)
-            };
-
-            socket.emit("leaveRoom", [thisRoom, roomList, "{{ name }}", "{{ picture }}"]);
-        };
-
-
-        // Receive room name from server and delete room in yourRoom if sent by user
-        socket.on("leaveRoom", (data) => {
-
-            let thisRoom = document.getElementById(data[0]);
-
-            if (thisRoom !== null) {
-                thisRoom.parentElement.removeChild(thisRoom);
-            }
-        });
+    <script>
     
     </script>
 {% endblock %}
