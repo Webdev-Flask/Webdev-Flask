@@ -23,5 +23,4 @@ def chatFunction():
 
     else:
 
-
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole()) 

@@ -10,10 +10,20 @@
 {% endblock %}
 
 {% block main %}
+    <div id="c01">
+        <div id="c02">
+            <input id="create" name="create" placeholder="Create a room" type="text">
+            <button onclick="join()">Join</button>
+        </div>
+        <div id="c03">
+            <div id="rooms"></div>
+        </div>
+    </div>
+
     <div>
         <div id="chat"></div>
         <div>
-            <input id="text" autocomplete="off" autofocus class="form-control" name="text" placeholder="Say something..." type="text">
+            <input id="text" name="text" placeholder="Say something..." type="text">
         </div>
         <div>
             <button type="submit">Send</button>
@@ -39,9 +49,22 @@
             border-radius: 10px;
             margin-bottom: 10px;
         }
+
+        #c01 {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+        }
+
+        
     </style>
 
     <script>
+
+        // chat text
+        // chat notifications
+
     
     </script>
 {% endblock %}

@@ -450,7 +450,7 @@ def uploadPicture(upload):
         return None
 
 
-# SocketIO server side event handler for checking time difference
+# SocketIO event handler for checking time difference
 @socketio.on("time")
 def handle_time(data):
     date = int(time() * 1000.0)
