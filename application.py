@@ -500,7 +500,7 @@ def handle_create_room(data):
 
         # Copying list and add notification message to send to the room
         notification = data.copy()
-        notification[0] = " has created and joined the" + data[0] + " room."
+        notification[0] = " has created and joined the " + data[0] + " room."
 
         ## add to both schema: 
 

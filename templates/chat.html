@@ -127,7 +127,7 @@
             mylist = myrooms()
             list = rooms()
 
-            return socket.emit("create", [document.getElementById("create").value, mylist, list, "{{ name }}"]);
+            return socket.emit("create", [document.getElementById("create").value, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
 
         // Join existing room
@@ -153,7 +153,7 @@
         // Receive the notification from server
         socket.on("notification", (data) => {
 
-            document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end; color:grey;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + data[0] + "</div>";
+            document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end; color:grey;\"><img src=\"" + data[4] + "\" alt=\"Profile picture of " + data[3] + "\" height=\"17\" width=\"17\"> " + data[3] + data[0] + "</div>";
         });
 
 
