@@ -57,14 +57,14 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
+    channel = db.Column(db.String(1024), nullable=False, default="False")
 
 class Chats(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
-    username = db.Column(db.String(1024), nullable=False)
-    channel = db.Column(db.String(1024), nullable=False)
-    date = db.Column(db.Integer, nullable=False, default=0)
+    name = db.Column(db.String(1024), nullable=False)
+    userlist = db.Column(db.String(1024), nullable=False)  
     text = db.Column(db.Text, nullable=False)
-    
+
 
 # Create DB
 db.create_all()
@@ -453,19 +453,101 @@ def uploadPicture(upload):
 # SocketIO event handler for checking time difference
 @socketio.on("time")
 def handle_time(data):
+
+    # Convert time from Python to JS
     date = int(time() * 1000.0)
+
+    # Create list with both times
     result = [int(data), date]
+
+    # Emit to client
     emit("time", result, broadcast=False)
 
 
 # SocketIO event handler for sending message
 @socketio.on("chat")
-def handle_message(data):
+def handle_send_message(data):
+
+    ## grab from DB user room list
+
+    # Set counter to zero
     index = 0
+
+    # Loop through room list
     while index < len(data[1]):
+
+        # Joining needed room
         join_room(data[1][index])
+
+        # Emit to specific room
         emit("chat", data, to=data[1][index])
+
+        # Increment counter
         index += 1
+
+
+# SocketIO event handler for creating room
+@socketio.on("create")
+def handle_create_room(data):
+
+    ## grab from DB both channel list
+
+    # Check if room name does not alreay exist
+    if data[0] not in data[1] and data[0] not in data[2]:
+
+        # Joining room
+        join_room(data[0])
+
+        # Copying list and add notification message to send to the room
+        notification = data.copy()
+        notification[0] = " has created and joined the" + data[0] + " room."
+
+        ## add to both schema: 
+
+        # Emit to new room
+        emit("notification", notification, to=data[0])
+
+        # Send data to lists of all users 
+        emit("create", data, broadcast=True)
+
+    # If the room name already exist
+    elif data[0] not in data[1] and data[0] in data[2]:
+
+        # Joining room
+        join_room(data[0])
+
+        # Copying list and add notification message to send to the room
+        notification = data.copy()
+        notification[0] = " has joined the existing " + data[0] + " room."
+
+        ## add to user's channel schema: 
+
+        # Emit to new room
+        emit("notification", notification, to=data[0])
+
+        # Send list name to update user list
+        emit("join", data, broadcast=True)
+
+
+# SocketIO event handler for leaving room
+@socketio.on("join")
+def handle_join_room(data):
+
+    # Send data to lists of all users 
+    emit("leave", data, broadcast=True)
+
+
+# SocketIO event handler for leaving room
+@socketio.on("leave")
+def handle_leave_room(data):
+
+    ## delete to user's channel schema: 
+
+    # Send data to lists of all users 
+    emit("leave", data, broadcast=True)
+
+
+
 
 
 # Import routes after to avoid circular import

@@ -20,7 +20,7 @@
         </div>
         <div class="c02">
             <div>  
-                <ul class="c04">
+                <ul class="c04" id="myrooms">
                     <li>Main</li><button class="c05" id="Main">Leave</button>
                 </ul>
             </div>
@@ -31,8 +31,7 @@
         </div>
         <div class="c02">
             <div>  
-                <ul class="c04">
-                    <li>Main</li><button class="c05" id="Main">Leave</button>
+                <ul class="c04" id="rooms">
                 </ul>
             </div>
         </div>
@@ -86,23 +85,10 @@
 
         var socket = io();
 
-        // Receive the chat from server
-        socket.on("chat", (data) => {
+        // Constitute my rooms list
+        function myrooms() {
 
-            document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + ": " + data[0] + "</div>";
-        });
-
-        // Receive the notification from server
-        socket.on("notification", (data) => {
-
-            document.getElementById("chat").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end; color:grey;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + data[0] + "</div>";
-        });
-
-
-        // Constitute the room list
-        function rooms() {
-
-            let target = document.getElementById("list").getElementsByTagName('li');
+            let target = document.getElementById("myrooms").getElementsByTagName('li');
             let list = [];
 
             for (let a = 0; a < target.length; a++) {
@@ -111,34 +97,95 @@
             };
 
             return list;
-        }
-
-        // Send chat and rooms list to server
-        function send() {
-
-            list = rooms()
-
-            return socket.emit("chat", [document.getElementById("text").value, list, "{{ name }}", "{{ picture }}"]);
         };
 
-        // Create a room
+        // Constitute the rooms list
+        function rooms() {
+
+            let target = document.getElementById("rooms").getElementsByTagName('li');
+            let list = [];
+
+            for (let a = 0; a < target.length; a++) {
+
+                list.push(list.item(a).nodeValue)
+            };
+
+            return list;
+        };
+
+        // Send chat and rooms list to server for synchro
+        function send() {
+
+            mylist = myrooms()
+
+            return socket.emit("chat", [document.getElementById("text").value, mylist, "{{ name }}", "{{ picture }}"]);
+        };
+
+        // Create a room and send list for synchro
         function create() {
 
+            mylist = myrooms()
+            list = rooms()
 
+            return socket.emit("create", [document.getElementById("create").value, mylist, list, "{{ name }}"]);
         };
 
         // Join existing room
-        function join() {
+        function join(element) {
 
-
+            return socket.emit("join", [element]);
         };
 
         // Leave existing room
-        function leave() {
+        function leave(element) {
 
-            
+            return socket.emit("leave", [element]);
         };
 
-    
+
+        // Receive the chat from server
+        socket.on("chat", (data) => {
+
+            document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + ": " + data[0] + "</div>";
+        });
+
+
+        // Receive the notification from server
+        socket.on("notification", (data) => {
+
+            document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end; color:grey;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + data[0] + "</div>";
+        });
+
+
+        // Receive room name from server and add it to both room lists
+        socket.on("create", (data) => {
+
+            if (data[3] == "{{ name }}") {
+
+                document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+            
+            } else {
+
+                document.getElementById("rooms").innerHTML += "<li>" + data[0] + " " + "<button onclick=\"join(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+            }
+        });
+
+        // Receive room name from server and add it to the user list
+        socket.on("join", (data) => {
+
+            document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+        });
+
+        // Receive room name from server and substract it from the user list
+        socket.on("leave", (data) => {
+
+            let room = document.getElementById(data[0]);
+
+            if (room !== null) {
+                room.parentElement.removeChild(room);
+            }
+
+        });
+
     </script>
 {% endblock %}
