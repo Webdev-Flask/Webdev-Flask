@@ -57,12 +57,12 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
-    channel = db.Column(db.String(1024), nullable=False, default="False")
+    channel = db.Column(db.String(1024), nullable=False, default="[]")
 
 class Chats(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
     name = db.Column(db.String(1024), nullable=False)
-    userlist = db.Column(db.String(1024), nullable=False)  
+    userlist = db.Column(db.String(1024), nullable=False, default="[]")  
     text = db.Column(db.Text, nullable=False)
 
 
@@ -545,9 +545,6 @@ def handle_leave_room(data):
 
     # Send data to lists of all users 
     emit("leave", data, broadcast=True)
-
-
-
 
 
 # Import routes after to avoid circular import
