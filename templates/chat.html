@@ -15,16 +15,18 @@
             <div id="c03"></div>
             <div>
                 <input id="text" name="text" placeholder="Say something..." type="text">
-                <button type="submit">Send</button>
+                <button onclick="send()">Send</button>
             </div>
         </div>
         <div id="c02">
             <div>
                 <input id="create" name="create" placeholder="Create a room" type="text">
-                <button onclick="join()">Join</button>
+                <button onclick="create()">Create</button>
             </div>
-            <div>
-                <div id="rooms"></div>
+            <div>  
+                <ul id="list">
+                    <li>Main</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -63,10 +65,37 @@
 
     </style>
 
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
 
-        // chat text
-        // chat notifications
+        function rooms() {
+
+            let target = document.getElementById("list").getElementsByTagName('li');
+            let list = [];
+
+            for (let a = 0; a < target.length; a++) {
+
+                list.push(list.item(a).nodeValue)
+            };
+
+            return list;
+        }
+
+        var socket = io();
+
+            // Send chat and rooms list to server
+            function send() {
+
+                list = rooms()
+
+                socket.emit("chat", [document.getElementById("text").value, list, "{{ name }}", "{{ picture }}"]);
+            };
+
+            // Receive the chat from server
+            socket.on("chat", (data) => {
+
+                document.getElementById("c03").innerHTML += "<br>" + "<div style=\"display:inline; white-space:nowrap; align-items:flex-end;\"><img src=\"" + data[3] + "\" alt=\"Profile picture of " + data[2] + "\" height=\"17\" width=\"17\"> " + data[2] + ": " + data[0] + "</div>";
+            });
 
     
     </script>

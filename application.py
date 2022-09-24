@@ -458,6 +458,16 @@ def handle_time(data):
     emit("time", result, broadcast=False)
 
 
+# SocketIO event handler for sending message
+@socketio.on("chat")
+def handle_message(data):
+    index = 0
+    while index < len(data[1]):
+        join_room(data[1][index])
+        emit("chat", data, to=data[1][index])
+        index += 1
+
+
 # Import routes after to avoid circular import
 from routes.index import index
 from routes.signin import signin
