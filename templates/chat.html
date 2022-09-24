@@ -11,20 +11,27 @@
 
 {% block main %}
     <div id="c01">
-        <div id="c02">
+        <div class="c02">
             <div id="c03"></div>
             <div>
                 <input id="text" name="text" placeholder="Say something..." type="text">
                 <button onclick="send()">Send</button>
             </div>
         </div>
-        <div id="c02">
+        <div class="c02">
             <div>
                 <input id="create" name="create" placeholder="Create a room" type="text">
                 <button onclick="create()">Create</button>
             </div>
             <div>  
-                <ul id="c04">
+                <ul class="c04">
+                    <li>Main</li><button class="c05" id="Main">Leave</button>
+                </ul>
+            </div>
+        </div>
+        <div class="c02">
+            <div>  
+                <ul class="c04">
                     <li>Main</li><button class="c05" id="Main">Leave</button>
                 </ul>
             </div>
@@ -46,7 +53,7 @@
             justify-content: flex-start;
         }
 
-        #c02 {
+        .c02 {
             margin-left: 10px;
             margin-right: 10px; 
         }
@@ -63,7 +70,7 @@
             margin-bottom: 10px;
         }
 
-        #c04 {
+        .c04 {
             display: flex;
             flex-direction: row;
         }
