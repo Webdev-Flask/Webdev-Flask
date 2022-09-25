@@ -521,7 +521,7 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Make user room list
-    data[1] = eval(query.room).copy()
+    data[1] = eval(str(query.room)).copy()
 
     # Make all users room list
     data[2] = getUserRooms()
