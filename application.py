@@ -360,11 +360,15 @@ def getUserRooms():
 
     # Set variables
     temporary = []
-    rooms = query.room
 
     # Loop through all DB entries and append to list
-    for room in rooms:
-        temporary.append(room)
+    for rooms in query:
+
+        print(rooms)
+        for room in rooms:
+
+            print(room)
+            temporary.append(room)
 
     # Return a set of list
     return list(set(temporary))
