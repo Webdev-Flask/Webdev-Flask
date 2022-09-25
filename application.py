@@ -496,7 +496,7 @@ def handle_create_room(data):
     print(data[2])
 
     # Check if room name does not alreay exist
-    if data[0] not in data[1] and data[0] not in data[2]:
+    if not data[0] in data[1] and not data[0] in data[2]:
 
         # Joining room
         join_room(data[0])
@@ -514,7 +514,7 @@ def handle_create_room(data):
         emit("create", data, broadcast=True)
 
     # If the room name already exist
-    elif data[0] not in data[1] and data[0] in data[2]:
+    elif not data[0] in data[1] and data[0] in data[2]:
 
         # Joining room
         join_room(data[0])
