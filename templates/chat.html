@@ -90,7 +90,7 @@
 
             for (let a = 0; a < target.length; a++) {
 
-                list.push(target.item(a).nodeValue)
+                list.push(target.item(a).childNodes[0].nodeValue)
             };
 
             console.log(list)
@@ -108,7 +108,7 @@
 
             for (let a = 0; a < target.length; a++) {
 
-                list.push(target.item(a).nodeValue)
+                list.push(target.item(a).childNodes[0].nodeValue)
             };
 
             console.log(list)
