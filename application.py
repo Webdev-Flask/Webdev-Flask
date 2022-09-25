@@ -491,6 +491,9 @@ def handle_send_message(data):
 def handle_create_room(data):
 
     ## grab from DB both channel list
+    print(data[0])
+    print(data[1])
+    print(data[2])
 
     # Check if room name does not alreay exist
     if data[0] not in data[1] and data[0] not in data[2]:
