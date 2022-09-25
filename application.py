@@ -622,11 +622,11 @@ def handle_leave_room(data):
         notification = data.copy()
         notification[0] = " has left the " + data[0] + " room."
 
-    # Emit to new room
-    emit("notification", notification, to=data[0])
+        # Emit to new room
+        emit("notification", notification, to=data[0])
 
-    # Send data to lists of all users 
-    emit("leave", data, broadcast=True)
+        # Send data to lists of all users 
+        emit("leave", data, broadcast=True)
 
 
 # Import routes after to avoid circular import
