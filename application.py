@@ -491,9 +491,6 @@ def handle_send_message(data):
 def handle_create_room(data):
 
     ## grab from DB both channel list
-    print(data[0])
-    print(data[1])
-    print(data[2])
 
     # Check if room name does not alreay exist
     if data[0] not in data[1] and data[0] not in data[2]:
@@ -530,6 +527,21 @@ def handle_create_room(data):
 
         # Send list name to update user list
         emit("join", data, broadcast=True)
+
+    # If the room name already exist and the user is in already
+    else:
+
+        # Joining room
+        join_room(data[0])
+
+        # Copying list and add notification message to send to the room
+        notification = data.copy()
+        notification[0] = " is already in the " + data[0] + " room."
+
+        ## add to user's channel schema: 
+
+        # Emit to new room
+        emit("notification", notification, to=data[0])
 
 
 # SocketIO event handler for leaving room
