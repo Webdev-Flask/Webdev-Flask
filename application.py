@@ -525,7 +525,7 @@ def handle_create_room(data):
     data[1] = eval(query.room).copy()
 
     # Make all users room list
-    data[2] = getUserList()
+    data[2] = getUserRooms()
 
 
     # Check if room name does not alreay exist
