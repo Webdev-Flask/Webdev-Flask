@@ -365,10 +365,10 @@ def getUserRooms():
     for rooms in query:
 
         print(rooms)
-        for room in rooms:
+        for item in rooms.room:
 
-            print(room)
-            temporary.append(room)
+            print(item)
+            temporary.append(item)
 
     # Return a set of list
     return list(set(temporary))
