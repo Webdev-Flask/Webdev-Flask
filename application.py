@@ -57,7 +57,7 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
-    channel = db.Column(db.String(1024), nullable=False, default="[]")
+    room = db.Column(db.String(1024), nullable=False, default="[Main]")
 
 class Chats(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
@@ -335,16 +335,37 @@ def getUserPort():
     return port
 
 
-# Get user chat Room
+# Get user room list
 def getUserRoom():
 
     # Check who's id is logged in
     loggedId = session["user_id"]
         
-    # Query database for chat rooms
+    # Query database for room list
     query = Users.query.filter_by(id=loggedId).first()
 
-    return query.chat
+    return query.room
+
+
+# Get all users list
+def getUserRooms():
+
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for all room lists
+    query = Users.query.filter(id!=loggedId).all()
+
+    # Set variables
+    temporary = []
+    rooms = query.room
+
+    # Loop through all DB entries and append to list
+    for room in rooms:
+        temporary.append(room)
+
+    # Return a set of list
+    return list(set(temporary))
 
 
 # Length checker for user input
@@ -490,7 +511,22 @@ def handle_send_message(data):
 @socketio.on("create")
 def handle_create_room(data):
 
-    ## grab from DB both channel list
+    # Check for empty room name
+    if data[0] == "":
+        data[0] = "Unnamed"
+
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for chat rooms
+    query = Users.query.filter_by(id=loggedId).first()
+
+    # Make user room list
+    data[1] = eval(query.room).copy()
+
+    # Make all users room list
+    data[2] = getUserList()
+
 
     # Check if room name does not alreay exist
     if data[0] not in data[1] and data[0] not in data[2]:
@@ -502,7 +538,12 @@ def handle_create_room(data):
         notification = data.copy()
         notification[0] = " has created and joined the " + data[0] + " room."
 
-        ## add to both schema: 
+        # Add new room name to user list
+        data[1].append(data[0])
+
+        # Save room list in database
+        query.room = data[1]
+        db.session.commit()
 
         # Emit to new room
         emit("notification", notification, to=data[0])
@@ -537,8 +578,6 @@ def handle_create_room(data):
         # Copying list and add notification message to send to the room
         notification = data.copy()
         notification[0] = " is already in the " + data[0] + " room."
-
-        ## add to user's channel schema: 
 
         # Emit to new room
         emit("notification", notification, to=data[0])
