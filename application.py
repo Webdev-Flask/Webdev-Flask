@@ -491,7 +491,7 @@ def handle_send_message(data):
 def handle_create_room(data):
 
     ## grab from DB both channel list
-    print(data[0])
+    print(type(data[0]))
     print(data[1])
     print(data[2])
 
