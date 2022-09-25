@@ -157,11 +157,11 @@
 
             if (data[3] == "{{ name }}") {
 
-                document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button class=\"c04\" onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
+                document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + "<button class=\"c04\" onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
             
             } else {
 
-                document.getElementById("rooms").innerHTML += "<li>" + data[0] + " " + "<button class=\"c04\" onclick=\"join(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
+                document.getElementById("rooms").innerHTML += "<li>" + data[0] + "<button class=\"c04\" onclick=\"join(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
             }
         });
 
