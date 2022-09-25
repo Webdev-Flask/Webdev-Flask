@@ -522,11 +522,11 @@ def handle_create_room(data):
 
     # Make user room list
     data[1] = eval(query.room)
-    print("1")
-    print(data[1])
 
     # Make all users room list
     data[2] = getUserRooms()
+
+    print(data[2])
 
 
     # Check if room name does not alreay exist
@@ -541,8 +541,6 @@ def handle_create_room(data):
 
         # Add new room name to user list
         data[1].append(data[0])
-        print("2")
-        print(data[1])
 
         # Save room list in database
         query.room = str(data[1])
