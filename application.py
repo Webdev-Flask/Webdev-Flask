@@ -523,7 +523,7 @@ def handle_create_room(data):
     # Make user room list
     print("1")
     print(query.room)
-    data[1] = list(query.room)
+    data[1] = list([query.room])
     print("2")
     print(data[1])
 
