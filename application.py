@@ -57,7 +57,7 @@ class Users(db.Model):
     newsletter = db.Column(db.String(1024), nullable=False, default="True")
     status = db.Column(db.String(1024), nullable=False, default="False")
     timeout = db.Column(db.Integer, nullable=False, default=0)
-    room = db.Column(db.String(1024), nullable=False, default="[Main]")
+    room = db.Column(db.String(1024), nullable=False, default="[\"Main\"]")
 
 class Chats(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True, unique=True)
