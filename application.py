@@ -543,6 +543,8 @@ def handle_create_room(data):
 
         # Add new room name to user list
         data[1].append(data[0])
+        print("3")
+        print(data[1])
 
         # Save room list in database
         query.room = data[1]
