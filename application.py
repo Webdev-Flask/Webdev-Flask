@@ -522,7 +522,9 @@ def handle_create_room(data):
 
     # Make user room list
     data[1] = []
-    data[1] = eval(query.room).copy()
+    for room in query.room:
+        data[1].append(str(room))
+    print(data[1])
 
     # Make all users room list
     data[2] = getUserRooms()
