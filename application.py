@@ -356,19 +356,12 @@ def getUserRooms():
     # Query database for all room lists
     query = Users.query.filter(id!=loggedId).all()
 
-    print(query)
-
     # Set variables
     temporary = []
 
     # Loop through all DB entries and append to list
     for rooms in query:
-
-        print(rooms)
-        for item in rooms.room:
-
-            print(item)
-            temporary.append(item)
+        temporary.append(rooms.room)
 
     # Return a set of list
     return list(set(temporary))
