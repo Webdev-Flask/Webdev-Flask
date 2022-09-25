@@ -547,7 +547,7 @@ def handle_create_room(data):
         print(data[1])
 
         # Save room list in database
-        query.room = data[1]
+        query.room = str(data[1])
         db.session.commit()
 
         # Emit to new room
