@@ -521,10 +521,8 @@ def handle_create_room(data):
     query = Users.query.filter_by(id=loggedId).first()
 
     # Make user room list
+    data[1] = query.room
     print("1")
-    print(query.room)
-    data[1] = list([query.room])
-    print("2")
     print(data[1])
 
     # Make all users room list
@@ -543,7 +541,7 @@ def handle_create_room(data):
 
         # Add new room name to user list
         data[1].append(data[0])
-        print("3")
+        print("2")
         print(data[1])
 
         # Save room list in database
