@@ -526,8 +526,6 @@ def handle_create_room(data):
     # Make all users room list
     data[2] = getUserRooms()
 
-    print(data[2])
-
 
     # Check if room name does not alreay exist
     if data[0] not in data[1] and data[0] not in data[2]:
@@ -563,6 +561,7 @@ def handle_create_room(data):
         notification[0] = " has joined the existing " + data[0] + " room."
 
         ## add to user's channel schema: 
+        ## HERE 
 
         # Emit to new room
         emit("notification", notification, to=data[0])
@@ -572,6 +571,8 @@ def handle_create_room(data):
 
     # If the room name already exist and the user is in already
     else:
+
+        ## TODO data[2]
 
         # Joining room
         join_room(data[0])
@@ -596,7 +597,33 @@ def handle_join_room(data):
 @socketio.on("leave")
 def handle_leave_room(data):
 
-    ## delete to user's channel schema: 
+    # Check who's id is logged in
+    loggedId = session["user_id"]
+        
+    # Query database for chat rooms
+    query = Users.query.filter_by(id=loggedId).first()
+
+    # Make user room list
+    data[1] = eval(query.room)
+
+    # Make all users room list
+    data[2] = getUserRooms()
+
+    # Check if room name exists
+    if data[0] in data[1] and data[0] in data[2]:
+
+        data[1].remove(data[0])
+
+        # Remove room in list and commit to DB
+        query.room = str(data[1])
+        db.session.commit()
+
+        # Copying list and add notification message to send to the room
+        notification = data.copy()
+        notification[0] = " has left the " + data[0] + " room."
+
+    # Emit to new room
+    emit("notification", notification, to=data[0])
 
     # Send data to lists of all users 
     emit("leave", data, broadcast=True)

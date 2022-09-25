@@ -134,7 +134,7 @@
         // Leave existing room
         function leave(element) {
 
-            return socket.emit("leave", [element]);
+            return socket.emit("leave", [element, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
 
 
@@ -161,7 +161,7 @@
             
             } else {
 
-                document.getElementById("rooms").innerHTML += "<li>" + data[0] + "<button class=\"c04\" onclick=\"join(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
+                document.getElementById("rooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + "<button class=\"c04\" onclick=\"join(this.parentNode.id)\" type=\"submit\">" + "Join" + "</button>" + "</li>";
             }
         });
 
