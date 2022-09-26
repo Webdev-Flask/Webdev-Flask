@@ -22,6 +22,9 @@
             <div>  
                 <ul id="myrooms">
                     <li>Main<button class="c04" id="Main">Leave</button></li>
+                    {% for element in myrooms %}
+                        <li id="{{ element }}">{{ element }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div>
@@ -30,8 +33,11 @@
             </div>
         </div>
         <div class="c02">
-            <div>  
+            <div>
                 <ul id="rooms">
+                    {% for element in rooms %}
+                        <li id="{{ element }}">{{ element }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
