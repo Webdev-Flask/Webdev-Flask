@@ -103,7 +103,7 @@
         // Send chat and rooms list to server for synchro
         function send() {
 
-            mylist = room(myrooms)
+            mylist = room("myrooms")
 
             return socket.emit("chat", [document.getElementById("text").value, mylist, "{{ name }}", "{{ picture }}"]);
         };
@@ -111,8 +111,8 @@
         // Create a room and send list for synchro
         function create() {
 
-            mylist = room(myrooms)
-            list = room(rooms)
+            mylist = room("myrooms")
+            list = room("rooms")
 
             return socket.emit("create", [document.getElementById("create").value, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
@@ -126,8 +126,8 @@
         // Leave existing room
         function leave(element) {
 
-            mylist = room(myrooms)
-            list = room(rooms)
+            mylist = room("myrooms")
+            list = room("rooms")
 
             return socket.emit("leave", [element, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
