@@ -488,7 +488,8 @@ def handle_time(data):
 @socketio.on("chat")
 def handle_send_message(data):
 
-    ## grab from DB user room list
+    # Get user room list
+    data[1] = getUserRoom()
 
     # Set counter to zero
     index = 0
