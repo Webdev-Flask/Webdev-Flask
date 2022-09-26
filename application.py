@@ -549,7 +549,7 @@ def handle_create_room(data):
         emit("notification", notification, to=data[0])
 
         # Send data to lists of all users 
-        emit("create", data, broadcast=True)
+        emit("create", data, to=data[0])
 
     # If the room name already exist
     elif data[0] not in data[1] and data[0] in data[2]:
@@ -561,9 +561,6 @@ def handle_create_room(data):
         notification = data.copy()
         notification[0] = " has joined the existing " + data[0] + " room."
 
-        ## add to user's channel schema: 
-        ## HERE 
-
         # Add new room name to user room list
         data[1].append(data[0])
 
@@ -571,7 +568,7 @@ def handle_create_room(data):
         emit("notification", notification, to=data[0])
 
         # Send list name to update user list
-        emit("join", data, broadcast=True)
+        emit("join", data, to=data[0])
 
     # If the room name already exist and the user is in already
     else:
@@ -639,7 +636,7 @@ def handle_leave_room(data):
         notification[0] = " is trying to leave a non existant room."
 
         # Emit to new room
-        emit("notification", notification, to=data[0])
+        emit("notification", notification, broadcast=True)
 
 
 # Import routes after to avoid circular import
