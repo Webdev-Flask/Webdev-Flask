@@ -21,9 +21,8 @@ def chatFunction():
         return redirect("/")
 
     else:
-        print(eval(getUserRoom()))
-        print(getUserRooms())
+
         myrooms = eval(getUserRoom())
-        rooms= getUserRooms()
+        rooms= eval(getUserRooms())
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), myrooms=myrooms, rooms=rooms) 
