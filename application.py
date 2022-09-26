@@ -612,6 +612,9 @@ def handle_leave_room(data):
     # Make all users room list
     data[2] = getUserRooms()
 
+    print(data[1])
+    print(data[2])
+
     # Check if room name exists
     if data[0] in data[1] and data[0] in data[2]:
 
