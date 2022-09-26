@@ -140,6 +140,9 @@
         // Leave existing room
         function leave(element) {
 
+            mylist = myrooms()
+            list = rooms()
+
             return socket.emit("leave", [element, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
 
