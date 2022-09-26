@@ -537,8 +537,9 @@ def handle_create_room(data):
         notification = data.copy()
         notification[0] = " has created and joined the " + data[0] + " room."
 
-        # Add new room name to user list
+        # Add new room name to both room list
         data[1].append(data[0])
+        data[2].append(data[0])
 
         # Save room list in database
         query.room = str(data[1])
@@ -563,6 +564,9 @@ def handle_create_room(data):
         ## add to user's channel schema: 
         ## HERE 
 
+        # Add new room name to user room list
+        data[1].append(data[0])
+
         # Emit to new room
         emit("notification", notification, to=data[0])
 
@@ -571,8 +575,6 @@ def handle_create_room(data):
 
     # If the room name already exist and the user is in already
     else:
-
-        ## TODO data[2]
 
         # Joining room
         join_room(data[0])
@@ -612,7 +614,9 @@ def handle_leave_room(data):
     # Check if room name exists
     if data[0] in data[1] and data[0] in data[2]:
 
+        # Remove room name from both list
         data[1].remove(data[0])
+        data[2].remove(data[0])
 
         # Remove room in list and commit to DB
         query.room = str(data[1])
@@ -627,6 +631,15 @@ def handle_leave_room(data):
 
         # Send data to lists of all users 
         emit("leave", data, broadcast=True)
+
+    else: 
+
+        # Copying list and add notification message to send to the room
+        notification = data.copy()
+        notification[0] = " is trying to leave a non existant room."
+
+        # Emit to new room
+        emit("notification", notification, to=data[0])
 
 
 # Import routes after to avoid circular import
