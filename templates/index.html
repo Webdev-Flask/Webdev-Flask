@@ -12,6 +12,15 @@
     <img src="{{ picture }}" alt="Profile picture of {{ name }}" height="50">
 
     <div>
+        <a href="/username">Username</a>
+        <a href="/password">Password</a>
+        <a href="/email">Email</a>
+        <a href="/newsletter">Newsletter</a>
+        <a href="/picture">Picture</a>
+        <a href="/delete">Delete</a>
+    </div>
+    <br>
+    <div>
         {% if role == "admin" %}
             <a href="/administration">Administration</a>
         {% endif %}
@@ -20,12 +29,6 @@
         <a href="/server">Server</a>
         <a href="/clock">Clock</a>
         <a href="/calculator">Calculator</a>
-        <a href="/username">Username</a>
-        <a href="/password">Password</a>
-        <a href="/email">Email</a>
-        <a href="/newsletter">Newsletter</a>
-        <a href="/picture">Picture</a>
-        <a href="/delete">Delete</a>
     </div>
     <br>
     <a href="/logout">Logout</a>
