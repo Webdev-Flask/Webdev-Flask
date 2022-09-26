@@ -21,7 +21,7 @@
         <div class="c02">
             <div>  
                 <ul id="myrooms">
-                    <li>Main<button class="c04" id="Main">Leave</button></li>
+                    <li id="Main">Main<button class="c04" onclick="leave(this.parentNode.id)">Leave</button></li>
                     {% for element in myrooms %}
                         <li id="{{ element }}">{{ element }}</li>
                     {% endfor %}
