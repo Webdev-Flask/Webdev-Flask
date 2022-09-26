@@ -1,0 +1,423 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Clock
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+
+    <div id="animationContainer"></div>
+
+    <div class="clockMain">
+        <div class="clockHour">
+            <div class="clockHourFirst">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="111"></div>
+                        <div id="112"></div>
+                        <div id="113"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="121"></div>
+                        <div id="122"></div>
+                        <div id="123"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="131"></div>
+                        <div id="132"></div>
+                        <div id="133"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="141"></div>
+                        <div id="142"></div>
+                        <div id="143"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="151"></div>
+                        <div id="152"></div>
+                        <div id="153"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clockHourSecond">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="211"></div>
+                        <div id="212"></div>
+                        <div id="213"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="221"></div>
+                        <div id="222"></div>
+                        <div id="223"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="231"></div>
+                        <div id="232"></div>
+                        <div id="233"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="241"></div>
+                        <div id="242"></div>
+                        <div id="243"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="251"></div>
+                        <div id="252"></div>
+                        <div id="253"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clockSep">
+            <div></div>
+            <div></div>
+        </div>
+
+        <div class="clockMinute">
+            <div class="clockMinuteFirst">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="311"></div>
+                        <div id="312"></div>
+                        <div id="313"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="321"></div>
+                        <div id="322"></div>
+                        <div id="323"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="331"></div>
+                        <div id="332"></div>
+                        <div id="333"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="341"></div>
+                        <div id="342"></div>
+                        <div id="343"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="351"></div>
+                        <div id="352"></div>
+                        <div id="353"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clockMinuteSecond">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="411"></div>
+                        <div id="412"></div>
+                        <div id="413"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="421"></div>
+                        <div id="422"></div>
+                        <div id="423"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="431"></div>
+                        <div id="432"></div>
+                        <div id="433"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="441"></div>
+                        <div id="442"></div>
+                        <div id="443"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="451"></div>
+                        <div id="452"></div>
+                        <div id="453"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clockSep">
+            <div></div>
+        </div>
+
+        <div class="clockSecond">
+            <div class="clockSecondFirst">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="511"></div>
+                        <div id="512"></div>
+                        <div id="513"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="521"></div>
+                        <div id="522"></div>
+                        <div id="523"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="531"></div>
+                        <div id="532"></div>
+                        <div id="533"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="541"></div>
+                        <div id="542"></div>
+                        <div id="543"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="551"></div>
+                        <div id="552"></div>
+                        <div id="553"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clockSecondSecond">
+                <div class="clockFigureMain">
+                    <div class="clock1FigureRow">
+                        <div id="611"></div>
+                        <div id="612"></div>
+                        <div id="613"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="621"></div>
+                        <div id="622"></div>
+                        <div id="623"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="631"></div>
+                        <div id="632"></div>
+                        <div id="633"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="641"></div>
+                        <div id="642"></div>
+                        <div id="643"></div>
+                    </div>
+
+                    <div class="clock1FigureRow">
+                        <div id="651"></div>
+                        <div id="652"></div>
+                        <div id="653"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form action="/clock" method="post">
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <style>
+        #animationContainer {
+            height: 50px;
+            width: 50px;
+            margin-bottom: 50px;
+            background-color: #000000;
+            transition: width 2s, height 2s;
+            transition-delay: 1s;
+            transition-timing-function: ease-in-out;
+            transform: rotate(45deg);
+            border-radius: 12px;
+        }
+
+        #animationContainer:hover {
+            width: 75px;
+            height: 75px;
+        }
+
+        .clockMain {    
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clockHour {
+            width: 325px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clockMinute {
+            width: 325px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clockSecond {
+            width: 325px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clockSep {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clockFigureMain {
+            height: 250px;
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clock1FigureRow {
+            height: 50px;
+            width: 150px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+
+        .clock1FigureRow > div {
+            height: 50px;
+            width: 50px;
+            border: 2px solid white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+    </style>
+
+    <script>
+        let div01content01 = document.getElementById("div01");
+        div01content01.innerHTML = "Connected to script";
+
+        let data = [
+            ["11", "21", "31", "41", "51", "13", "23", "33", "43", "53", "12", "52"],
+            ["12", "22", "32", "42", "52", "21", "51", "53"],
+            ["11", "12", "13", "23", "33", "32", "31", "41", "51", "52", "53"],
+            ["13", "23", "33", "43", "53", "11", "12", "32", "51", "52"],
+            ["13", "23", "33", "43", "53", "11", "21", "31", "32"],
+            ["13", "12", "11", "21", "31", "32", "33", "43", "53", "52", "51"],
+            ["11", "21", "31", "41", "51", "12", "13", "32", "33", "43", "53", "52"],
+            ["13", "23", "33", "43", "53", "11", "12"],
+            ["13", "23", "33", "43", "53", "11", "21", "31", "41", "51", "12", "32", "52"],
+            ["11", "21", "31", "23", "51", "12", "13", "32", "33", "43", "53", "52"],
+        ]
+
+        function generateRandomColor() {
+            return '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        function changeColor() {
+            let animationContainer = document.getElementById("animationContainer")
+            animationContainer.style.backgroundColor = generateRandomColor();
+        }
+
+        function getTime() {
+            let currentTime = new Date().toLocaleTimeString('en-BE', {
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric"
+            });
+            return currentTime.split(":").join("")
+        }
+
+        function draw(input) {
+            if (input.length === 4) {
+                if (input[0] === "1") {
+                    let pixelToDraw = document.getElementById(input.substring(1));
+                    pixelToDraw.style.backgroundColor = "green";
+                }
+                else {
+                    let pixelToDraw = document.getElementById(input.substring(1));
+                    pixelToDraw.style.backgroundColor = "white";
+                }
+
+            } 
+            else {
+                console.log("Error: wrong input format in draw(): " + input)
+            }
+        }
+
+        function clear() {
+            for (let a = 1; a <= 6; a++) {
+                for (let b = 1; b <= 5; b++) {
+                    for (let c = 1; c <= 3; c++) {
+                        draw("0" + `${a}` + `${b}` + `${c}`)
+                    }
+                }
+            }
+        }
+
+        function display() {
+            clear()
+            let timeToDisplay = getTime()
+            for (let a = 1; a <= 6; a++) {
+                for(let b = 0; b < data[timeToDisplay[a - 1]].length; b++) {
+                    draw("1" + `${a}` + `${data[timeToDisplay[a - 1]][b]}`)
+
+                }
+            }
+        }
+
+        setInterval(changeColor, 1000)
+        setInterval(display, 1000)
+
+
+    </script>
+{% endblock %}

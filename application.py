@@ -537,9 +537,8 @@ def handle_create_room(data):
         notification = data.copy()
         notification[0] = " has created and joined the " + data[0] + " room."
 
-        # Add new room name to both room list
+        # Add new room name to user room list
         data[1].append(data[0])
-        data[2].append(data[0])
 
         # Save room list in database
         query.room = str(data[1])
@@ -563,6 +562,10 @@ def handle_create_room(data):
 
         # Add new room name to user room list
         data[1].append(data[0])
+
+        # Save room list in database
+        query.room = str(data[1])
+        db.session.commit()
 
         # Emit to new room
         emit("notification", notification, to=data[0])
@@ -611,9 +614,8 @@ def handle_leave_room(data):
     # Check if room name exists
     if data[0] in data[1] and data[0] in data[2]:
 
-        # Remove room name from both list
+        # Remove room name from user room list
         data[1].remove(data[0])
-        data[2].remove(data[0])
 
         # Remove room in list and commit to DB
         query.room = str(data[1])
@@ -656,6 +658,8 @@ from routes.administration import administration
 from routes.communication import communication
 from routes.chat import chat
 from routes.server import server
+from routes.clock import clock
+from routes.calculator import calculator
 
 
 # Configure Blueprints
@@ -675,3 +679,5 @@ app.register_blueprint(administration)
 app.register_blueprint(communication)
 app.register_blueprint(chat)
 app.register_blueprint(server)
+app.register_blueprint(clock)
+app.register_blueprint(calculator)

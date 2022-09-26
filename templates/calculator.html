@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Calculator
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div class="calcMain">
+        <div id="calcScreen" class="calcDisplay">
+            <div id="calcScreen1"></div>
+            <div id="calcScreen2"></div>
+            
+        </div>
+        <div class="calcKeys">
+            <div class="calcKeyRow">
+                <button type="button" id="1" class="calcKey" onclick="keyPress(this.id)">1</button>
+                <button type="button" id="2" class="calcKey" onclick="keyPress(this.id)">2</button>
+                <button type="button" id="3" class="calcKey" onclick="keyPress(this.id)">3</button>
+                <button type="button" id="+" class="calcKey" onclick="keyPress(this.id)">+</button>
+                <button type="button" id="(" class="calcKey" onclick="keyPress(this.id)">(</button>
+                <button type="button" id="E" class="calcKey" onclick="erase()">E</button>
+            </div>
+
+            <div class="calcKeyRow">
+                <button type="button" id="4" class="calcKey" onclick="keyPress(this.id)">4</button>
+                <button type="button" id="5" class="calcKey" onclick="keyPress(this.id)">5</button>
+                <button type="button" id="6" class="calcKey" onclick="keyPress(this.id)">6</button>
+                <button type="button" id="-" class="calcKey" onclick="keyPress(this.id)">-</button>
+                <button type="button" id=")" class="calcKey" onclick="keyPress(this.id)">)</button>
+                <button type="button" id="M+" class="calcKey" onclick="keyPress(this.id)">M+</button>
+            </div>
+
+            <div class="calcKeyRow">
+                <button type="button" id="7" class="calcKey" onclick="keyPress(this.id)">7</button>
+                <button type="button" id="8" class="calcKey" onclick="keyPress(this.id)">8</button>
+                <button type="button" id="9" class="calcKey" onclick="keyPress(this.id)">9</button>
+                <button type="button" id="*" class="calcKey" onclick="keyPress(this.id)">*</button>
+                <button type="button" id="**" class="calcKey" onclick="keyPress(this.id)">^</button>
+                <button type="button" id="M-" class="calcKey" onclick="keyPress(this.id)">M-</button>
+            </div>
+
+            <div class="calcKeyRow">
+                <button type="button" id="." class="calcKey" onclick="keyPress(this.id)">.</button>
+                <button type="button" id="0" class="calcKey" onclick="keyPress(this.id)">0</button>
+                <button type="button" id="000" class="calcKey" onclick="keyPress(this.id)">000</button>
+                <button type="button" id="/" class="calcKey" onclick="keyPress(this.id)">/</button>
+                <button type="button" id="%" class="calcKey" onclick="keyPress(this.id)">%</button>
+                <button type="button" id="=" class="calcKey" onclick="compute(currentInput)">=</button>
+            </div>
+        </div>
+    </div>
+
+
+    <form action="/calculator" method="post">
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <script>
+        let calcScreen1 = document.getElementById("calcScreen1")
+        let calcScreen2 = document.getElementById("calcScreen2")
+
+        let currentInput = "";
+        let lastInput = "";
+
+        function keyPress(id) {
+            currentInput += id
+            calcScreen2.innerHTML = currentInput;
+        }
+
+        function compute(input) {
+            let currentOperation = eval(input);
+            lastInput = currentInput;
+            calcScreen1.innerHTML = currentOperation;
+            calcScreen2.innerHTML = currentOperation;
+            currentInput = currentOperation;
+        }
+
+        function erase() {
+            calcScreen1.innerHTML = "";
+            calcScreen2.innerHTML = "";
+            currentInput = "";
+        }
+    </script>
+
+    <style>
+        .calcMain {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+
+        .calcDisplay {
+            font-size: 2em;
+            width: 725px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 12px;
+            margin-bottom: 12.5px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: flex-end;
+            align-content: center;
+            padding-right: 25px;
+
+        }
+
+        .calcKeys {
+            width: 725px;
+            height: 475px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+
+        .calcKeyRow {
+            width: 725px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+
+        .calcKey{
+            font-size: 2em;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+        }
+
+
+    </style>
+{% endblock %}
