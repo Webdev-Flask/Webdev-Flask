@@ -593,7 +593,7 @@ def handle_create_room(data):
 def handle_join_room(data):
 
     # Send data to lists of all users 
-    emit("leave", data, broadcast=True)
+    emit("join", data, broadcast=True)
 
 
 # SocketIO event handler for leaving room
