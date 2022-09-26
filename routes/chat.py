@@ -22,7 +22,7 @@ def chatFunction():
 
     else:
 
-        myrooms = getUserRoom
+        myrooms = eval(getUserRoom)
         rooms= getUserRooms
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), myrooms=myrooms, rooms=rooms) 
