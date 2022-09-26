@@ -21,9 +21,9 @@
         <div class="c02">
             <div>  
                 <ul id="myrooms">
-                    <li id="Main">Main<button class="c04" onclick="leave(this.parentNode.id)">Leave</button></li>
+                    <li>Main<button class="c04" onclick="leave(this.parentNode.value)">Leave</button></li>
                     {% for element in myrooms %}
-                        <li id="{{ element }}">{{ element }}<button class="c04" onclick="leave(this.parentNode.id)">Leave</button></li>
+                        <li>{{ element }}<button class="c04" onclick="leave(this.parentNode.value)">Leave</button></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -36,7 +36,7 @@
             <div>
                 <ul id="rooms">
                     {% for element in rooms %}
-                        <li id="{{ element }}">{{ element }}<button class="c04" onclick="join(this.parentNode.id)">Join</button></li>
+                        <li>{{ element }}<button class="c04" onclick="join(this.parentNode.value)">Join</button></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -86,24 +86,10 @@
 
         var socket = io();
 
-        // Constitute my rooms list
-        function myrooms() {
-
-            let target = document.getElementById("myrooms").getElementsByTagName('li');
-            let list = [];
-
-            for (let a = 0; a < target.length; a++) {
-
-                list.push(target.item(a).childNodes[0].nodeValue)
-            };
-
-            return list;
-        };
-
         // Constitute the rooms list
-        function rooms() {
+        function room(parameter) {
 
-            let target = document.getElementById("rooms").getElementsByTagName('li');
+            let target = document.getElementById(parameter).getElementsByTagName('li');
             let list = [];
 
             for (let a = 0; a < target.length; a++) {
@@ -117,7 +103,7 @@
         // Send chat and rooms list to server for synchro
         function send() {
 
-            mylist = myrooms()
+            mylist = room(myrooms)
 
             return socket.emit("chat", [document.getElementById("text").value, mylist, "{{ name }}", "{{ picture }}"]);
         };
@@ -125,8 +111,8 @@
         // Create a room and send list for synchro
         function create() {
 
-            mylist = myrooms()
-            list = rooms()
+            mylist = rooms(myrooms)
+            list = room(rooms)
 
             return socket.emit("create", [document.getElementById("create").value, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
@@ -140,8 +126,8 @@
         // Leave existing room
         function leave(element) {
 
-            mylist = myrooms()
-            list = rooms()
+            mylist = rooms(myrooms)
+            list = room(rooms)
 
             return socket.emit("leave", [element, mylist, list, "{{ name }}", "{{ picture }}"]);
         };
@@ -178,16 +164,14 @@
         socket.on("join", (data) => {
 
             document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+            // ///////////enlever la room dans la liste dispo
         });
 
         // Receive room name from server and substract it from the user list
         socket.on("leave", (data) => {
 
-            let room = document.getElementById(data[0]);
-
-            if (room !== null) {
-                room.removeChild(room);
-            }
+            let room = document.getElementById("rooms").getElementsByTagName('li');
+            room.remove(data[0])
 
         });
 
