@@ -21,9 +21,9 @@
         <div class="c02">
             <div>  
                 <ul id="myrooms">
-                    <li>Main<button class="c04" onclick="leave(this.parentNode.value)">Leave</button></li>
+                    <li>Main<button class="c04" onclick="leave(this.parentNode.innerText)">Leave</button></li>
                     {% for element in myrooms %}
-                        <li>{{ element }}<button class="c04" onclick="leave(this.parentNode.value)">Leave</button></li>
+                        <li>{{ element }}<button class="c04" onclick="leave(this.parentNode.innerText)">Leave</button></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -36,7 +36,7 @@
             <div>
                 <ul id="rooms">
                     {% for element in rooms %}
-                        <li>{{ element }}<button class="c04" onclick="join(this.parentNode.value)">Join</button></li>
+                        <li>{{ element }}<button class="c04" onclick="join(this.parentNode.innerText)">Join</button></li>
                     {% endfor %}
                 </ul>
             </div>
