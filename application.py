@@ -527,6 +527,11 @@ def handle_create_room(data):
     # Make all users room list
     data[2] = getUserRooms()
 
+    print(data[1])
+    print(type(data[1]))
+    print(data[2])
+    print(type(data[1]))
+
 
     # Check if room name does not alreay exist
     if data[0] not in data[1] and data[0] not in data[2]:
@@ -611,6 +616,7 @@ def handle_leave_room(data):
 
     # Make all users room list
     data[2] = getUserRooms()
+
 
     # Check if room name exists
     if data[0] in data[1] and data[0] in data[2]:
