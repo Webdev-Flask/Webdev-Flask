@@ -22,4 +22,4 @@ def playgroundFunction():
 
     else:
 
-        return render_template("clock.html", name=getUserName(), picture=getUserPicture(), role=getUserRole()) 
+        return render_template("playground.html", name=getUserName(), picture=getUserPicture(), role=getUserRole()) 
