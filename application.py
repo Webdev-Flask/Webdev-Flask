@@ -361,7 +361,7 @@ def getUserRooms():
 
     # Loop through all DB entries and append to list
     for rooms in query:
-        temporary.append(eval(rooms.room))
+        temporary.append(rooms.room)
 
     # Return a set of list
     return list(set(temporary))
