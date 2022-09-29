@@ -364,7 +364,7 @@ def getUserRooms():
         temporary.append(rooms.room)
 
     # Return a set of list
-    return list(set(temporary))
+    return set(temporary)
 
 
 # Length checker for user input
