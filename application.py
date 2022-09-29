@@ -612,9 +612,6 @@ def handle_leave_room(data):
     # Make all users room list
     data[2] = getUserRooms()
 
-    print(data[1])
-    print(data[2])
-
     # Check if room name exists
     if data[0] in data[1] and data[0] in data[2]:
 
@@ -664,6 +661,7 @@ from routes.chat import chat
 from routes.server import server
 from routes.clock import clock
 from routes.calculator import calculator
+from routes.playground import playground
 
 
 # Configure Blueprints
@@ -685,3 +683,4 @@ app.register_blueprint(chat)
 app.register_blueprint(server)
 app.register_blueprint(clock)
 app.register_blueprint(calculator)
+app.register_blueprint(playground)

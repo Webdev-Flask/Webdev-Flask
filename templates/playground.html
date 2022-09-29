@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Playground
+{% endblock %}
+
+{% block navigation %}
+    {% if role == "admin" %}
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+
+
+
+    <form action="/clock" method="post">
+    </form>
+    <br>
+    <div>
+        <a href="/">Index</a>
+    </div>
+
+    <style>
+    </style>
+
+    <script>
+    </script>
+{% endblock %}
