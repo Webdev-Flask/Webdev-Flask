@@ -668,7 +668,7 @@ from routes.chat import chat
 from routes.server import server
 from routes.clock import clock
 from routes.calculator import calculator
-from routes.playground import playground
+from routes.sandbox import sandbox
 
 
 # Configure Blueprints
@@ -690,4 +690,4 @@ app.register_blueprint(chat)
 app.register_blueprint(server)
 app.register_blueprint(clock)
 app.register_blueprint(calculator)
-app.register_blueprint(playground)
+app.register_blueprint(sandbox)

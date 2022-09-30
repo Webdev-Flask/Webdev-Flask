@@ -3,13 +3,13 @@ from application import getUserName, getUserPicture, getUserRole, login_required
 
 
 # Set Blueprints
-playground = Blueprint('playground', __name__,)
+sandbox = Blueprint('sandbox', __name__,)
 
 
-@playground.route("/playground", methods=["GET", "POST"])
+@sandbox.route("/sandbox", methods=["GET", "POST"])
 @login_required
 @confirmed_required
-def playgroundFunction():
+def sandboxFunction():
 
     # Force flash() to get the messages on the same page as the redirect.
     get_flashed_messages()
@@ -22,4 +22,4 @@ def playgroundFunction():
 
     else:
 
-        return render_template("playground.html", name=getUserName(), picture=getUserPicture(), role=getUserRole()) 
+        return render_template("sandbox.html", name=getUserName(), picture=getUserPicture(), role=getUserRole()) 
