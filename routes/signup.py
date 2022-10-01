@@ -87,7 +87,7 @@ def signupFunction():
 
 
         # Query database for email if already exists
-        query = Users.query.filter_by(username=username).all()
+        query = Users.query.filter_by(email=email).all()
         if len(query) != 0:
             flash("Email already taken", "danger")
             return redirect("/signup")
