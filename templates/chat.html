@@ -163,7 +163,7 @@
         // Receive room name from server and add it to the user list
         socket.on("join", (data) => {
 
-            document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "X" + "</button>" + "</li>";
+            document.getElementById("myrooms").innerHTML += "<li id=\"" + data[0] + "\">" + data[0] + " " + "<button onclick=\"leave(this.parentNode.id)\" type=\"submit\">" + "Leave" + "</button>" + "</li>";
             // ///////////enlever la room dans la liste dispo
         });
 
