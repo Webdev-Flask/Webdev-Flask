@@ -354,7 +354,7 @@ def getUserRooms():
     loggedId = session["user_id"]
         
     # Query database for all room lists
-    query = Users.query.filter(id!=loggedId).all()
+    query = Users.query.filter(query.id!=loggedId).all()
 
     # Set variables
     temporary = []

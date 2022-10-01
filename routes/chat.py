@@ -25,8 +25,5 @@ def chatFunction():
         myrooms = getUserRoom()
         rooms = getUserRooms()
 
-        print(myrooms)
-        print(rooms)
-
 
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), myrooms=myrooms, rooms=rooms) 
