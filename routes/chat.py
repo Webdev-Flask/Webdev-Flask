@@ -23,6 +23,7 @@ def chatFunction():
     else:
 
         myrooms = getUserRoom()
+        print(myrooms)
         rooms = getUserRooms()
 
 
