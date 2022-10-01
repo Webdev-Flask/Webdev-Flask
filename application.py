@@ -361,7 +361,8 @@ def getUserRooms():
 
     # Loop through all DB entries and append to list
     for rooms in query:
-        temporary.append(rooms.room)
+        if rooms.id != loggedId:
+            temporary.append(rooms.room)
 
     # Return a set of list
     return temporary
