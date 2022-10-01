@@ -25,4 +25,7 @@ def chatFunction():
         myrooms = getUserRoom()
         rooms = getUserRooms()
 
+        myrooms = eval(myrooms)
+        rooms = eval(rooms)
+
         return render_template("chat.html", name=getUserName(), picture=getUserPicture(), role=getUserRole(), myrooms=myrooms, rooms=rooms) 
