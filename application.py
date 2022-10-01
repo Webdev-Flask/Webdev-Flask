@@ -359,7 +359,7 @@ def getUserRooms():
     # Set variables
     temporary = []
 
-    # Loop through all DB entries and append to list
+    # Loop through all DB entries and append to list if user id is different
     for rooms in query:
         if rooms.id != loggedId:
             temporary.append(rooms.room)

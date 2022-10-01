@@ -22,8 +22,7 @@ def chatFunction():
 
     else:
 
-        myrooms = getUserRoom()
-        print(myrooms)
+        myrooms = eval(getUserRoom())
         rooms = getUserRooms()
 
 
